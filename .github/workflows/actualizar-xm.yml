@@ -8,10 +8,6 @@ on:
       desde:
         description: "Fecha inicial AAAA-MM-DD (vacío = incremental)"
         required: false
-  push:
-    # Carga histórica inicial en la rama de desarrollo de la fase 2.
-    branches: [fase2-api-xm]
-    paths: [src/embalses_sin/xm.py, .github/workflows/actualizar-xm.yml]
 
 permissions:
   contents: write

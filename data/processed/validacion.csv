@@ -8,3 +8,6 @@ energia_vs_volumen_x_factor,advertencia,Amaní,Vol. útil × factor = 253.7 GWh 
 energia_vs_volumen_x_factor,advertencia,Calima,Vol. útil × factor = 233.3 GWh frente a 219.0 GWh declarados (+7 %)
 energia_vs_volumen_x_factor,advertencia,Urrá,Vol. útil × factor = 140.6 GWh frente a 159.4 GWh declarados (-12 %)
 nep_faltante,advertencia,Ituango,Sin NEP ni NPV declarados en PARATEC
+xm_pct_fuera_de_rango,advertencia,ITUANGO,3 días con % útil fuera de −20 a 120 % (p. ej. 2026-10-02)
+xm_pct_fuera_de_rango,advertencia,PLAYAS,15 días con % útil fuera de −20 a 120 % (p. ej. 2025-04-27)
+xm_pct_fuera_de_rango,advertencia,TRONERAS,3 días con % útil fuera de −20 a 120 % (p. ej. 2025-05-05)

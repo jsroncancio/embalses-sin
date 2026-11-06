@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-06T19:54:58+00:00",
+ "generado": "2026-11-06T21:31:28+00:00",
  "paratec": {
   "archivo": "data/raw/paratec/2026-11-03/PARATEC_Detalle_Embalse_03-11-2026.xlsx",
   "fecha_reporte": "2026-11-03",
@@ -8,17 +8,14 @@
  },
  "xm": {
   "origen": "API pública de XM (servapibi.xm.com.co) vía pydataxm",
-  "ultimo_dato": null,
-  "primer_dato": null,
+  "ultimo_dato": "NaT",
+  "primer_dato": "NaT",
   "metricas": [
    "PorcVoluUtilDiar/Embalse",
    "VoluUtilDiarEner/Embalse",
    "CapaUtilDiarEner/Embalse",
-   "VoluUtilDiarMasa/Embalse",
-   "VertEner/Embalse",
    "PorcVoluUtilDiar/Sistema",
-   "VoluUtilDiarEner/Sistema",
-   "CapaUtilDiarEner/Sistema"
+   "VoluUtilDiarEner/Sistema"
   ]
  },
  "topologia": "config/cadenas.yaml",

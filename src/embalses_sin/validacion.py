@@ -158,7 +158,7 @@ def validar_xm(diaria: pd.DataFrame, series: pd.DataFrame, embalses: pd.DataFram
         if s in esperadas and dias > 5:
             hallazgos.append(Hallazgo("xm_dato_viejo", "advertencia", s, f"Último dato del {f.date()} ({dias} días)"))
 
-    raros = diaria[(diaria["pct_util_xm"] < -20) | (diaria["pct_util_xm"] > 120)]
+    raros = diaria[(diaria["pct_util"] < -20) | (diaria["pct_util"] > 120)]
     for s, g in raros.groupby("serie_xm"):
         hallazgos.append(
             Hallazgo(

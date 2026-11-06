@@ -1,0 +1,25 @@
+serie_xm,cadena_id,nodos,embalse
+PENOL,nare_guatape,penol,Peñol
+SAN LORENZO,nare_guatape,san_lorenzo,San Lorenzo
+PLAYAS,nare_guatape,playas_emb,Playas
+PUNCHINA,nare_guatape,punchina,Punchiná
+MIRAFLORES,porce_guadalupe,miraflores,Miraflores
+TRONERAS,porce_guadalupe,troneras_emb,Troneras
+RIOGRANDE2,porce_guadalupe,riogrande2,Riogrande II
+PORCE II,porce_guadalupe,porce2_emb,Porce II
+PORCE III,porce_guadalupe,porce3_emb,Porce III
+AGREGADO BOGOTA,bogota_pagua,"sisga, tomine, neusa",Sisga + Tominé + Neusa
+CHUZA,bogota_pagua,chuza,Chuza
+MUNA,bogota_pagua,muna,Muña (bombeo)
+EL QUIMBO,alto_magdalena,el_quimbo_emb,El Quimbo
+BETANIA,alto_magdalena,betania_emb,Betania
+SALVAJINA,cauca,salvajina_emb,Salvajina
+ITUANGO,cauca,ituango_emb,Ituango
+GUAVIO,guavio,guavio_emb,Guavio
+ESMERALDA,esmeralda_chivor,esmeralda,Esmeralda
+TOPOCORO,sogamoso,topocoro,Topocoro
+AMANI,la_miel,amani,Amaní
+CALIMA1,calima,calima_emb,Calima
+ALTOANCHICAYA,anchicaya,alto_anchicaya_emb,Alto Anchicayá
+URRA1,urra,urra_emb,Urrá
+PRADO,prado,prado_emb,Prado

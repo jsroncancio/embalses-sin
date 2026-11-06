@@ -84,11 +84,15 @@ def test_pipeline_con_xm(raiz):
     xm.actualizar(raiz, api=APISimulada(), desde=dt.date(2022, 1, 1), hasta=dt.date(2024, 6, 30))
     assert run(raiz, copiar_sitio=False) == 0
     salida = raiz / "data/processed"
-    cad = pd.read_csv(salida / "xm_cadenas_diario_reciente.csv")
+    cad = pd.read_csv(salida / "xm_cadenas_diario.csv")
     assert set(cad["cadena_id"]) == set(pd.read_csv(salida / "cadenas.csv")["cadena_id"])
     assert cad["pct_util"].between(0, 100).all()
-    rango = pd.read_csv(salida / "xm_embalses_rango_historico.csv")
-    assert (rango["p10"] <= rango["p90"]).all()
+    ref = pd.read_csv(salida / "xm_referencia_nep_npv.csv")
+    assert (ref["nep_pct"] <= ref["npv_pct"]).all()
+    assert set(ref["tipo"]) == {"embalse", "cadena", "sistema"}
+    # SIN: misma banda que el análisis de PARATEC en diciembre (10.503 GWh de 17.203 GWh menos Ituango).
+    sin_dic = ref[(ref["tipo"] == "sistema") & (ref["mes"] == 12)].iloc[0]
+    assert 0 < sin_dic["nep_pct"] < sin_dic["npv_pct"] < 100
     validacion = pd.read_csv(salida / "validacion.csv")
     assert not (validacion["regla"] == "xm_serie_faltante").any()
 

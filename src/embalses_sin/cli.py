@@ -57,7 +57,7 @@ def run(raiz: Path = RAIZ, copiar_sitio: bool = True) -> int:
         + validacion.validar_fisica(embalses, nep, supuestos["tolerancias"])
         + validacion.validar_factor_acumulado(cadenas, embalses)
     )
-    oper = operacion.tablas_operacion(raiz, cadenas)
+    oper = operacion.tablas_operacion(raiz, cadenas, nep)
     if oper:
         diaria = oper.pop("_diaria_completa")
         # La frescura se mide contra el dato más reciente, no contra el reloj,

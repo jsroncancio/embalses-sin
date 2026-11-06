@@ -1,0 +1,445 @@
+tipo,id,mes,nep_pct,npv_pct
+embalse,AGREGADO BOGOTA,1,39.0,100.0
+embalse,AGREGADO BOGOTA,2,35.0,100.0
+embalse,AGREGADO BOGOTA,3,31.0,100.0
+embalse,AGREGADO BOGOTA,4,27.0,100.0
+embalse,AGREGADO BOGOTA,5,26.0,100.0
+embalse,AGREGADO BOGOTA,6,24.0,100.0
+embalse,AGREGADO BOGOTA,7,27.0,100.0
+embalse,AGREGADO BOGOTA,8,38.0,100.0
+embalse,AGREGADO BOGOTA,9,43.0,100.0
+embalse,AGREGADO BOGOTA,10,40.0,100.0
+embalse,AGREGADO BOGOTA,11,37.0,100.0
+embalse,AGREGADO BOGOTA,12,41.0,100.0
+embalse,ALTOANCHICAYA,1,19.0,64.0
+embalse,ALTOANCHICAYA,2,26.0,65.0
+embalse,ALTOANCHICAYA,3,11.0,64.0
+embalse,ALTOANCHICAYA,4,0.0,59.0
+embalse,ALTOANCHICAYA,5,0.0,58.0
+embalse,ALTOANCHICAYA,6,7.0,64.0
+embalse,ALTOANCHICAYA,7,69.0,69.0
+embalse,ALTOANCHICAYA,8,72.0,72.0
+embalse,ALTOANCHICAYA,9,10.0,69.0
+embalse,ALTOANCHICAYA,10,0.0,58.0
+embalse,ALTOANCHICAYA,11,0.0,52.0
+embalse,ALTOANCHICAYA,12,0.0,57.0
+embalse,AMANI,1,9.0,94.0
+embalse,AMANI,2,0.0,96.0
+embalse,AMANI,3,0.0,96.0
+embalse,AMANI,4,0.0,96.0
+embalse,AMANI,5,9.0,95.0
+embalse,AMANI,6,20.0,97.0
+embalse,AMANI,7,26.0,98.0
+embalse,AMANI,8,25.0,97.0
+embalse,AMANI,9,14.0,97.0
+embalse,AMANI,10,3.0,95.0
+embalse,AMANI,11,0.0,94.0
+embalse,AMANI,12,13.0,94.0
+embalse,BETANIA,1,28.0,100.0
+embalse,BETANIA,2,27.0,100.0
+embalse,BETANIA,3,17.0,96.0
+embalse,BETANIA,4,0.0,94.0
+embalse,BETANIA,5,0.0,92.0
+embalse,BETANIA,6,0.0,94.0
+embalse,BETANIA,7,0.0,96.0
+embalse,BETANIA,8,0.0,98.0
+embalse,BETANIA,9,9.0,97.0
+embalse,BETANIA,10,9.0,96.0
+embalse,BETANIA,11,0.0,97.0
+embalse,BETANIA,12,8.0,99.0
+embalse,CALIMA1,1,2.0,100.0
+embalse,CALIMA1,2,2.0,100.0
+embalse,CALIMA1,3,1.0,100.0
+embalse,CALIMA1,4,0.0,99.0
+embalse,CALIMA1,5,0.0,99.0
+embalse,CALIMA1,6,2.0,100.0
+embalse,CALIMA1,7,4.0,100.0
+embalse,CALIMA1,8,4.0,100.0
+embalse,CALIMA1,9,1.0,100.0
+embalse,CALIMA1,10,0.0,100.0
+embalse,CALIMA1,11,0.0,99.0
+embalse,CALIMA1,12,1.0,99.0
+embalse,CHUZA,1,39.0,100.0
+embalse,CHUZA,2,35.0,100.0
+embalse,CHUZA,3,31.0,100.0
+embalse,CHUZA,4,27.0,100.0
+embalse,CHUZA,5,26.0,100.0
+embalse,CHUZA,6,24.0,100.0
+embalse,CHUZA,7,27.0,100.0
+embalse,CHUZA,8,38.0,100.0
+embalse,CHUZA,9,43.0,100.0
+embalse,CHUZA,10,40.0,100.0
+embalse,CHUZA,11,37.0,100.0
+embalse,CHUZA,12,41.0,100.0
+embalse,EL QUIMBO,1,24.0,100.0
+embalse,EL QUIMBO,2,16.0,100.0
+embalse,EL QUIMBO,3,8.0,98.0
+embalse,EL QUIMBO,4,4.0,98.0
+embalse,EL QUIMBO,5,0.0,96.0
+embalse,EL QUIMBO,6,1.0,95.0
+embalse,EL QUIMBO,7,0.0,96.0
+embalse,EL QUIMBO,8,16.0,97.0
+embalse,EL QUIMBO,9,32.0,97.0
+embalse,EL QUIMBO,10,35.0,97.0
+embalse,EL QUIMBO,11,35.0,98.0
+embalse,EL QUIMBO,12,31.0,99.0
+embalse,ESMERALDA,1,71.0,100.0
+embalse,ESMERALDA,2,53.0,100.0
+embalse,ESMERALDA,3,37.0,100.0
+embalse,ESMERALDA,4,17.0,99.0
+embalse,ESMERALDA,5,0.0,93.0
+embalse,ESMERALDA,6,0.0,91.0
+embalse,ESMERALDA,7,0.0,88.0
+embalse,ESMERALDA,8,18.0,89.0
+embalse,ESMERALDA,9,84.0,94.0
+embalse,ESMERALDA,10,92.0,92.0
+embalse,ESMERALDA,11,91.0,92.0
+embalse,ESMERALDA,12,89.0,100.0
+embalse,GUAVIO,1,35.0,100.0
+embalse,GUAVIO,2,25.0,100.0
+embalse,GUAVIO,3,16.0,100.0
+embalse,GUAVIO,4,6.0,98.0
+embalse,GUAVIO,5,0.0,98.0
+embalse,GUAVIO,6,0.0,96.0
+embalse,GUAVIO,7,0.0,97.0
+embalse,GUAVIO,8,23.0,98.0
+embalse,GUAVIO,9,45.0,99.0
+embalse,GUAVIO,10,47.0,99.0
+embalse,GUAVIO,11,45.0,100.0
+embalse,GUAVIO,12,42.0,100.0
+embalse,MIRAFLORES,1,45.0,97.0
+embalse,MIRAFLORES,2,33.0,97.0
+embalse,MIRAFLORES,3,21.0,97.0
+embalse,MIRAFLORES,4,9.0,96.0
+embalse,MIRAFLORES,5,0.0,94.0
+embalse,MIRAFLORES,6,0.0,94.0
+embalse,MIRAFLORES,7,13.0,94.0
+embalse,MIRAFLORES,8,15.0,94.0
+embalse,MIRAFLORES,9,20.0,93.0
+embalse,MIRAFLORES,10,43.0,93.0
+embalse,MIRAFLORES,11,45.0,94.0
+embalse,MIRAFLORES,12,50.0,96.0
+embalse,MUNA,1,39.0,100.0
+embalse,MUNA,2,35.0,100.0
+embalse,MUNA,3,31.0,100.0
+embalse,MUNA,4,27.0,100.0
+embalse,MUNA,5,26.0,100.0
+embalse,MUNA,6,24.0,100.0
+embalse,MUNA,7,27.0,100.0
+embalse,MUNA,8,38.0,100.0
+embalse,MUNA,9,43.0,100.0
+embalse,MUNA,10,40.0,100.0
+embalse,MUNA,11,37.0,100.0
+embalse,MUNA,12,41.0,100.0
+embalse,PENOL,1,7.0,99.0
+embalse,PENOL,2,5.0,100.0
+embalse,PENOL,3,3.0,100.0
+embalse,PENOL,4,0.0,99.0
+embalse,PENOL,5,0.0,99.0
+embalse,PENOL,6,0.0,99.0
+embalse,PENOL,7,2.0,99.0
+embalse,PENOL,8,3.0,99.0
+embalse,PENOL,9,2.0,99.0
+embalse,PENOL,10,3.0,99.0
+embalse,PENOL,11,4.0,99.0
+embalse,PENOL,12,8.0,99.0
+embalse,PLAYAS,1,61.0,61.0
+embalse,PLAYAS,2,62.0,62.0
+embalse,PLAYAS,3,35.0,61.0
+embalse,PLAYAS,4,0.0,57.0
+embalse,PLAYAS,5,35.0,55.0
+embalse,PLAYAS,6,52.0,61.0
+embalse,PLAYAS,7,61.0,61.0
+embalse,PLAYAS,8,48.0,59.0
+embalse,PLAYAS,9,0.0,54.0
+embalse,PLAYAS,10,14.0,52.0
+embalse,PLAYAS,11,52.0,52.0
+embalse,PLAYAS,12,59.0,59.0
+embalse,PORCE II,1,82.0,82.0
+embalse,PORCE II,2,67.0,83.0
+embalse,PORCE II,3,41.0,83.0
+embalse,PORCE II,4,5.0,79.0
+embalse,PORCE II,5,5.0,74.0
+embalse,PORCE II,6,0.0,75.0
+embalse,PORCE II,7,0.0,79.0
+embalse,PORCE II,8,0.0,78.0
+embalse,PORCE II,9,0.0,75.0
+embalse,PORCE II,10,0.0,71.0
+embalse,PORCE II,11,0.0,73.0
+embalse,PORCE II,12,48.0,79.0
+embalse,PORCE III,1,0.0,80.0
+embalse,PORCE III,2,0.0,81.0
+embalse,PORCE III,3,0.0,81.0
+embalse,PORCE III,4,0.0,80.0
+embalse,PORCE III,5,0.0,76.0
+embalse,PORCE III,6,0.0,75.0
+embalse,PORCE III,7,0.0,78.0
+embalse,PORCE III,8,0.0,77.0
+embalse,PORCE III,9,0.0,74.0
+embalse,PORCE III,10,0.0,71.0
+embalse,PORCE III,11,0.0,74.0
+embalse,PORCE III,12,0.0,79.0
+embalse,PRADO,1,6.0,74.0
+embalse,PRADO,2,4.0,74.0
+embalse,PRADO,3,4.0,73.0
+embalse,PRADO,4,0.0,73.0
+embalse,PRADO,5,0.0,73.0
+embalse,PRADO,6,12.0,74.0
+embalse,PRADO,7,12.0,75.0
+embalse,PRADO,8,8.0,75.0
+embalse,PRADO,9,5.0,75.0
+embalse,PRADO,10,2.0,73.0
+embalse,PRADO,11,0.0,72.0
+embalse,PRADO,12,4.0,73.0
+embalse,PUNCHINA,1,87.0,87.0
+embalse,PUNCHINA,2,68.0,87.0
+embalse,PUNCHINA,3,35.0,82.0
+embalse,PUNCHINA,4,0.0,78.0
+embalse,PUNCHINA,5,0.0,79.0
+embalse,PUNCHINA,6,34.0,79.0
+embalse,PUNCHINA,7,27.0,86.0
+embalse,PUNCHINA,8,0.0,77.0
+embalse,PUNCHINA,9,0.0,79.0
+embalse,PUNCHINA,10,0.0,68.0
+embalse,PUNCHINA,11,0.0,73.0
+embalse,PUNCHINA,12,60.0,80.0
+embalse,RIOGRANDE2,1,13.0,98.0
+embalse,RIOGRANDE2,2,9.0,98.0
+embalse,RIOGRANDE2,3,4.0,98.0
+embalse,RIOGRANDE2,4,0.0,97.0
+embalse,RIOGRANDE2,5,0.0,96.0
+embalse,RIOGRANDE2,6,0.0,96.0
+embalse,RIOGRANDE2,7,0.0,97.0
+embalse,RIOGRANDE2,8,0.0,97.0
+embalse,RIOGRANDE2,9,0.0,96.0
+embalse,RIOGRANDE2,10,0.0,95.0
+embalse,RIOGRANDE2,11,0.0,95.0
+embalse,RIOGRANDE2,12,12.0,97.0
+embalse,SALVAJINA,1,42.0,96.0
+embalse,SALVAJINA,2,36.0,97.0
+embalse,SALVAJINA,3,39.0,96.0
+embalse,SALVAJINA,4,36.0,96.0
+embalse,SALVAJINA,5,34.0,96.0
+embalse,SALVAJINA,6,35.0,97.0
+embalse,SALVAJINA,7,53.0,98.0
+embalse,SALVAJINA,8,57.0,98.0
+embalse,SALVAJINA,9,55.0,100.0
+embalse,SALVAJINA,10,43.0,98.0
+embalse,SALVAJINA,11,37.0,96.0
+embalse,SALVAJINA,12,48.0,95.0
+embalse,SAN LORENZO,1,49.0,96.0
+embalse,SAN LORENZO,2,33.0,95.0
+embalse,SAN LORENZO,3,18.0,94.0
+embalse,SAN LORENZO,4,9.0,90.0
+embalse,SAN LORENZO,5,0.0,88.0
+embalse,SAN LORENZO,6,4.0,90.0
+embalse,SAN LORENZO,7,38.0,91.0
+embalse,SAN LORENZO,8,34.0,93.0
+embalse,SAN LORENZO,9,31.0,92.0
+embalse,SAN LORENZO,10,41.0,92.0
+embalse,SAN LORENZO,11,42.0,93.0
+embalse,SAN LORENZO,12,53.0,95.0
+embalse,TOPOCORO,1,65.0,97.0
+embalse,TOPOCORO,2,45.0,97.0
+embalse,TOPOCORO,3,25.0,93.0
+embalse,TOPOCORO,4,25.0,88.0
+embalse,TOPOCORO,5,58.0,86.0
+embalse,TOPOCORO,6,56.0,90.0
+embalse,TOPOCORO,7,57.0,94.0
+embalse,TOPOCORO,8,53.0,94.0
+embalse,TOPOCORO,9,53.0,92.0
+embalse,TOPOCORO,10,47.0,87.0
+embalse,TOPOCORO,11,52.0,86.0
+embalse,TOPOCORO,12,73.0,92.0
+embalse,TRONERAS,1,45.0,97.0
+embalse,TRONERAS,2,33.0,97.0
+embalse,TRONERAS,3,21.0,97.0
+embalse,TRONERAS,4,9.0,96.0
+embalse,TRONERAS,5,0.0,94.0
+embalse,TRONERAS,6,0.0,94.0
+embalse,TRONERAS,7,13.0,94.0
+embalse,TRONERAS,8,15.0,94.0
+embalse,TRONERAS,9,20.0,93.0
+embalse,TRONERAS,10,43.0,93.0
+embalse,TRONERAS,11,45.0,94.0
+embalse,TRONERAS,12,50.0,96.0
+embalse,URRA1,1,100.0,100.0
+embalse,URRA1,2,79.0,97.0
+embalse,URRA1,3,54.0,100.0
+embalse,URRA1,4,29.0,86.0
+embalse,URRA1,5,4.0,89.0
+embalse,URRA1,6,4.0,89.0
+embalse,URRA1,7,6.0,75.0
+embalse,URRA1,8,4.0,81.0
+embalse,URRA1,9,4.0,86.0
+embalse,URRA1,10,4.0,97.0
+embalse,URRA1,11,56.0,97.0
+embalse,URRA1,12,99.0,100.0
+cadena,alto_magdalena,1,24.4016,100.0
+cadena,alto_magdalena,2,17.1043,100.0
+cadena,alto_magdalena,3,8.9036,97.7992
+cadena,alto_magdalena,4,3.5984,97.5984
+cadena,alto_magdalena,5,0.0,95.5984
+cadena,alto_magdalena,6,0.8996,94.8996
+cadena,alto_magdalena,7,0.0,96.0
+cadena,alto_magdalena,8,14.3937,97.1004
+cadena,alto_magdalena,9,29.6909,97.0
+cadena,alto_magdalena,10,32.3897,96.8996
+cadena,alto_magdalena,11,31.4862,97.8996
+cadena,alto_magdalena,12,28.6909,99.0
+cadena,anchicaya,1,19.0,64.0
+cadena,anchicaya,2,26.0,65.0
+cadena,anchicaya,3,11.0,64.0
+cadena,anchicaya,4,0.0,59.0
+cadena,anchicaya,5,0.0,58.0
+cadena,anchicaya,6,7.0,64.0
+cadena,anchicaya,7,69.0,69.0
+cadena,anchicaya,8,72.0,72.0
+cadena,anchicaya,9,10.0,69.0
+cadena,anchicaya,10,0.0,58.0
+cadena,anchicaya,11,0.0,52.0
+cadena,anchicaya,12,0.0,57.0
+cadena,bogota_pagua,1,39.0,100.0
+cadena,bogota_pagua,2,35.0,100.0
+cadena,bogota_pagua,3,31.0,100.0
+cadena,bogota_pagua,4,27.0,100.0
+cadena,bogota_pagua,5,26.0,100.0
+cadena,bogota_pagua,6,24.0,100.0
+cadena,bogota_pagua,7,27.0,100.0
+cadena,bogota_pagua,8,38.0,100.0
+cadena,bogota_pagua,9,43.0,100.0
+cadena,bogota_pagua,10,40.0,100.0
+cadena,bogota_pagua,11,37.0,100.0
+cadena,bogota_pagua,12,41.0,100.0
+cadena,calima,1,2.0,100.0
+cadena,calima,2,2.0,100.0
+cadena,calima,3,1.0,100.0
+cadena,calima,4,0.0,99.0
+cadena,calima,5,0.0,99.0
+cadena,calima,6,2.0,100.0
+cadena,calima,7,4.0,100.0
+cadena,calima,8,4.0,100.0
+cadena,calima,9,1.0,100.0
+cadena,calima,10,0.0,100.0
+cadena,calima,11,0.0,99.0
+cadena,calima,12,1.0,99.0
+cadena,cauca,1,42.0,96.0
+cadena,cauca,2,36.0,97.0
+cadena,cauca,3,39.0,96.0
+cadena,cauca,4,36.0,96.0
+cadena,cauca,5,34.0,96.0
+cadena,cauca,6,35.0,97.0
+cadena,cauca,7,53.0,98.0
+cadena,cauca,8,57.0,98.0
+cadena,cauca,9,55.0,100.0
+cadena,cauca,10,43.0,98.0
+cadena,cauca,11,37.0,96.0
+cadena,cauca,12,48.0,95.0
+cadena,esmeralda_chivor,1,71.0,100.0
+cadena,esmeralda_chivor,2,53.0,100.0
+cadena,esmeralda_chivor,3,37.0,100.0
+cadena,esmeralda_chivor,4,17.0,99.0
+cadena,esmeralda_chivor,5,0.0,93.0
+cadena,esmeralda_chivor,6,0.0,91.0
+cadena,esmeralda_chivor,7,0.0,88.0
+cadena,esmeralda_chivor,8,18.0,89.0
+cadena,esmeralda_chivor,9,84.0,94.0
+cadena,esmeralda_chivor,10,92.0,92.0
+cadena,esmeralda_chivor,11,91.0,92.0
+cadena,esmeralda_chivor,12,89.0,100.0
+cadena,guavio,1,35.0,100.0
+cadena,guavio,2,25.0,100.0
+cadena,guavio,3,16.0,100.0
+cadena,guavio,4,6.0,98.0
+cadena,guavio,5,0.0,98.0
+cadena,guavio,6,0.0,96.0
+cadena,guavio,7,0.0,97.0
+cadena,guavio,8,23.0,98.0
+cadena,guavio,9,45.0,99.0
+cadena,guavio,10,47.0,99.0
+cadena,guavio,11,45.0,100.0
+cadena,guavio,12,42.0,100.0
+cadena,la_miel,1,9.0,94.0
+cadena,la_miel,2,0.0,96.0
+cadena,la_miel,3,0.0,96.0
+cadena,la_miel,4,0.0,96.0
+cadena,la_miel,5,9.0,95.0
+cadena,la_miel,6,20.0,97.0
+cadena,la_miel,7,26.0,98.0
+cadena,la_miel,8,25.0,97.0
+cadena,la_miel,9,14.0,97.0
+cadena,la_miel,10,3.0,95.0
+cadena,la_miel,11,0.0,94.0
+cadena,la_miel,12,13.0,94.0
+cadena,nare_guatape,1,12.9722,97.8015
+cadena,nare_guatape,2,9.5369,98.6077
+cadena,nare_guatape,3,5.4355,98.4282
+cadena,nare_guatape,4,0.8093,97.0566
+cadena,nare_guatape,5,0.7017,96.8505
+cadena,nare_guatape,6,1.8751,97.1507
+cadena,nare_guatape,7,6.7679,97.338
+cadena,nare_guatape,8,6.6481,97.3525
+cadena,nare_guatape,9,4.5399,97.1902
+cadena,nare_guatape,10,6.596,96.9971
+cadena,nare_guatape,11,8.3239,97.1566
+cadena,nare_guatape,12,13.7924,97.5741
+cadena,porce_guadalupe,1,31.301,94.5219
+cadena,porce_guadalupe,2,23.3875,94.7035
+cadena,porce_guadalupe,3,14.0053,94.7035
+cadena,porce_guadalupe,4,4.0851,93.4168
+cadena,porce_guadalupe,5,0.4778,91.3757
+cadena,porce_guadalupe,6,0.0,91.3852
+cadena,porce_guadalupe,7,5.2106,92.4431
+cadena,porce_guadalupe,8,6.0123,92.2615
+cadena,porce_guadalupe,9,8.0164,90.8984
+cadena,porce_guadalupe,10,17.2352,89.8405
+cadena,porce_guadalupe,11,18.0368,90.6905
+cadena,porce_guadalupe,12,29.6387,93.3308
+cadena,prado,1,6.0,74.0
+cadena,prado,2,4.0,74.0
+cadena,prado,3,4.0,73.0
+cadena,prado,4,0.0,73.0
+cadena,prado,5,0.0,73.0
+cadena,prado,6,12.0,74.0
+cadena,prado,7,12.0,75.0
+cadena,prado,8,8.0,75.0
+cadena,prado,9,5.0,75.0
+cadena,prado,10,2.0,73.0
+cadena,prado,11,0.0,72.0
+cadena,prado,12,4.0,73.0
+cadena,sogamoso,1,65.0,97.0
+cadena,sogamoso,2,45.0,97.0
+cadena,sogamoso,3,25.0,93.0
+cadena,sogamoso,4,25.0,88.0
+cadena,sogamoso,5,58.0,86.0
+cadena,sogamoso,6,56.0,90.0
+cadena,sogamoso,7,57.0,94.0
+cadena,sogamoso,8,53.0,94.0
+cadena,sogamoso,9,53.0,92.0
+cadena,sogamoso,10,47.0,87.0
+cadena,sogamoso,11,52.0,86.0
+cadena,sogamoso,12,73.0,92.0
+cadena,urra,1,100.0,100.0
+cadena,urra,2,79.0,97.0
+cadena,urra,3,54.0,100.0
+cadena,urra,4,29.0,86.0
+cadena,urra,5,4.0,89.0
+cadena,urra,6,4.0,89.0
+cadena,urra,7,6.0,75.0
+cadena,urra,8,4.0,81.0
+cadena,urra,9,4.0,86.0
+cadena,urra,10,4.0,97.0
+cadena,urra,11,56.0,97.0
+cadena,urra,12,99.0,100.0
+sistema,SIN,1,33.0937,98.3792
+sistema,SIN,2,26.1285,98.6478
+sistema,SIN,3,19.3319,98.193
+sistema,SIN,4,13.2137,97.0126
+sistema,SIN,5,12.5567,96.1582
+sistema,SIN,6,12.4832,96.2219
+sistema,SIN,7,15.9182,96.4897
+sistema,SIN,8,23.1455,96.7559
+sistema,SIN,9,31.0506,96.994
+sistema,SIN,10,31.3941,96.4008
+sistema,SIN,11,31.3035,96.4982
+sistema,SIN,12,36.502,97.7911

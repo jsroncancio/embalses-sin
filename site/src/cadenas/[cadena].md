@@ -1,7 +1,7 @@
 ```js
 import {num, MESES, COMPONENTES} from "../components/formato.js";
 import {diagramaCadena} from "../components/topologia.js";
-import {conBanda, graficaNivel, graficaEmbalsesHoy, hoyFrenteAlRango, fechaCO} from "../components/nivel.js";
+import {conReferencia, graficaNivel, graficaEmbalsesHoy, embalsesHoy, fechaCO} from "../components/nivel.js";
 
 const id = observable.params.cadena;
 const topologia = FileAttachment("../data/topologia.json").json();
@@ -10,10 +10,9 @@ const todosEmbalses = FileAttachment("../data/embalses.csv").csv({typed: true});
 const todoMensual = FileAttachment("../data/cadenas_mensual.csv").csv({typed: true});
 const todoNep = FileAttachment("../data/nep_npv_mensual.csv").csv({typed: true});
 const validacion = FileAttachment("../data/validacion.csv").csv({typed: true});
-const xmCadenas = FileAttachment("../data/xm_cadenas_diario_reciente.csv").csv({typed: true});
-const xmRangoCadenas = FileAttachment("../data/xm_cadenas_rango_historico.csv").csv({typed: true});
-const xmEmbalses = FileAttachment("../data/xm_embalses_diario_reciente.csv").csv({typed: true});
-const xmRangoEmb = FileAttachment("../data/xm_embalses_rango_historico.csv").csv({typed: true});
+const xmCadenas = FileAttachment("../data/xm_cadenas_diario.csv").csv({typed: true});
+const xmEmbalses = FileAttachment("../data/xm_embalses_diario.csv").csv({typed: true});
+const referencia = FileAttachment("../data/xm_referencia_nep_npv.csv").csv({typed: true});
 const xmUltimos = FileAttachment("../data/xm_embalses_ultimo.csv").csv({typed: true});
 ```
 
@@ -41,36 +40,29 @@ const avisos = validacion.filter((d) => embalses.some((e) => e.embalse === d.obj
 
 ```js
 const serieCadena = xmCadenas.filter((d) => d.cadena_id === id);
-const datosCadena = conBanda(serieCadena, xmRangoCadenas.filter((d) => d.cadena_id === id), "pct_util");
+const datosCadena = conReferencia(serieCadena, referencia.filter((r) => r.tipo === "cadena" && r.id === id));
 const hoyCadena = datosCadena.at(-1);
-const ultCadena = serieCadena.at(-1);
-const anios = d3.max(xmRangoCadenas.filter((d) => d.cadena_id === id), (d) => d.anios);
+const ultimosCadena = xmUltimos.filter((d) => d.cadena_id === id);
 ```
 
-<p>Al ${fechaCO(hoyCadena.fecha)} la cadena tiene <b>${num(ultCadena.energia_gwh)} GWh</b> almacenados, el <b>${num(hoyCadena.valor, 1)} %</b> de su capacidad útil (${num(ultCadena.capacidad_gwh)} GWh). La mediana histórica para esta fecha es ${num(hoyCadena.p50, 1)} %.</p>
+<p>Al ${fechaCO(hoyCadena.fecha)} la cadena tiene <b>${num(hoyCadena.energia_gwh)} GWh</b> almacenados, el <b>${num(hoyCadena.valor, 1)} %</b> de su capacidad útil${hoyCadena.nep != null ? html`. La banda NEP–NPV de este mes va de ${num(hoyCadena.nep, 0)} % a ${num(hoyCadena.npv, 0)} %` : ""}.</p>
 
 <div class="card">
 
 ```js
-display(graficaNivel(datosCadena, {width, titulo: resumen.cadena, anios}));
+display(graficaNivel(datosCadena, {width, titulo: resumen.cadena}));
 ```
 
 </div>
 
 ```js
-const seriesCadena = [...new Set(xmUltimos.filter((d) => d.cadena_id === id).map((d) => d.serie_xm))];
-```
-
-${seriesCadena.length > 1 ? html`<h3>Por embalse</h3>` : ""}
-
-```js
-if (seriesCadena.length > 1) {
-  display(graficaEmbalsesHoy(hoyFrenteAlRango(xmUltimos.filter((d) => d.cadena_id === id), xmRangoEmb, "serie_xm", "pct_util_xm"), {width}));
-  for (const s of seriesCadena) {
-    const nombre = xmUltimos.find((d) => d.serie_xm === s).embalse;
-    const datos = conBanda(xmEmbalses.filter((d) => d.serie_xm === s), xmRangoEmb.filter((d) => d.serie_xm === s), "pct_util_xm");
-    display(html`<h4>${nombre}</h4>`);
-    display(graficaNivel(datos, {width, height: 200, titulo: nombre}));
+if (ultimosCadena.length > 1) {
+  display(html`<h3>Por embalse</h3>`);
+  display(graficaEmbalsesHoy(embalsesHoy(ultimosCadena, referencia), {width}));
+  for (const u of ultimosCadena) {
+    const datos = conReferencia(xmEmbalses.filter((d) => d.serie_xm === u.serie_xm), referencia.filter((r) => r.tipo === "embalse" && r.id === u.serie_xm));
+    display(html`<h4>${u.embalse}</h4>`);
+    display(graficaNivel(datos, {width, height: 200, titulo: u.embalse}));
   }
 }
 ```
@@ -104,32 +96,6 @@ display(Plot.plot({
 ```
 
 ${resumen.nep_incompleto ? html`<p class="warning">Algún embalse de esta cadena no tiene NEP ni NPV declarados en PARATEC; su energía no aparece en el gráfico.</p>` : ""}
-
-## Curvas NEP y NPV por embalse
-
-```js
-const conNep = nep.filter((d) => d.nep != null);
-const curvas = conNep.flatMap((d) => [
-  {embalse: d.embalse, mes: d.mes, curva: "NEP", valor: d.nep * 100},
-  {embalse: d.embalse, mes: d.mes, curva: "NPV", valor: d.npv * 100}
-]);
-display(Plot.plot({
-  width,
-  height: 60 + 120 * new Set(conNep.map((d) => d.embalse)).size,
-  marginLeft: 50,
-  marginRight: 110,
-  fy: {label: null},
-  x: {label: null, tickFormat: (m) => MESES[m - 1], ticks: 12},
-  y: {label: "% vol. útil", domain: [0, 100], grid: true, ticks: 3},
-  color: {domain: ["NEP", "NPV"], range: ["#6b7785", "#c98d12"], legend: true},
-  marks: [
-    Plot.areaY(conNep, {x: "mes", y1: (d) => d.nep * 100, y2: (d) => d.npv * 100, fy: "embalse", fill: "#2b7bb9", fillOpacity: 0.18, curve: "step"}),
-    Plot.lineY(curvas, {x: "mes", y: "valor", stroke: "curva", fy: "embalse", z: "curva", curve: "step", tip: {format: {y: (d) => `${num(d)} %`, x: (m) => MESES[m - 1]}}})
-  ]
-}));
-```
-
-<p class="muted">Franja azul: banda flexible entre NEP (piso) y NPV (techo), en porcentaje del volumen útil.</p>
 
 ## Embalses
 

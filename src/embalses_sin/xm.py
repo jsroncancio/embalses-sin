@@ -16,19 +16,17 @@ from pathlib import Path
 
 import pandas as pd
 
-# (métrica, entidad, unidad original, inicio del histórico). Nombres verificados
-# contra el inventario `ListadoMetricas` de la API (corrida "Explorar API XM", 2026-11-06).
-# Las métricas que alimentan las bandas históricas van desde 2000; el resto,
-# solo los últimos años, para que la carga inicial no tarde horas.
+# (métrica, entidad, unidad original, inicio). Nombres verificados contra el
+# inventario `ListadoMetricas` de la API (corrida "Explorar API XM", 2026-11-06).
+# El objetivo es monitorear hacia adelante: el histórico largo se consulta en
+# la propia API de XM, aquí se guarda desde 2025.
+INICIO = dt.date(2025, 1, 1)
 METRICAS = [
-    ("PorcVoluUtilDiar", "Embalse", "fracción", dt.date(2000, 1, 1)),
-    ("VoluUtilDiarEner", "Embalse", "kWh", dt.date(2000, 1, 1)),
-    ("CapaUtilDiarEner", "Embalse", "kWh", dt.date(2000, 1, 1)),
-    ("VoluUtilDiarMasa", "Embalse", "m3", dt.date(2024, 1, 1)),
-    ("VertEner", "Embalse", "kWh", dt.date(2024, 1, 1)),
-    ("PorcVoluUtilDiar", "Sistema", "fracción", dt.date(2000, 1, 1)),
-    ("VoluUtilDiarEner", "Sistema", "kWh", dt.date(2000, 1, 1)),
-    ("CapaUtilDiarEner", "Sistema", "kWh", dt.date(2000, 1, 1)),
+    ("PorcVoluUtilDiar", "Embalse", "fracción", INICIO),
+    ("VoluUtilDiarEner", "Embalse", "kWh", INICIO),
+    ("CapaUtilDiarEner", "Embalse", "kWh", INICIO),
+    ("PorcVoluUtilDiar", "Sistema", "fracción", INICIO),
+    ("VoluUtilDiarEner", "Sistema", "kWh", INICIO),
 ]
 
 REVISION_DIAS = 7

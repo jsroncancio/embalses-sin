@@ -1,6 +1,7 @@
 ```js
 import {num, MESES, COMPONENTES} from "../components/formato.js";
 import {diagramaCadena} from "../components/topologia.js";
+import {conBanda, graficaNivel, graficaEmbalsesHoy, hoyFrenteAlRango, fechaCO} from "../components/nivel.js";
 
 const id = observable.params.cadena;
 const topologia = FileAttachment("../data/topologia.json").json();
@@ -9,6 +10,11 @@ const todosEmbalses = FileAttachment("../data/embalses.csv").csv({typed: true});
 const todoMensual = FileAttachment("../data/cadenas_mensual.csv").csv({typed: true});
 const todoNep = FileAttachment("../data/nep_npv_mensual.csv").csv({typed: true});
 const validacion = FileAttachment("../data/validacion.csv").csv({typed: true});
+const xmCadenas = FileAttachment("../data/xm_cadenas_diario_reciente.csv").csv({typed: true});
+const xmRangoCadenas = FileAttachment("../data/xm_cadenas_rango_historico.csv").csv({typed: true});
+const xmEmbalses = FileAttachment("../data/xm_embalses_diario_reciente.csv").csv({typed: true});
+const xmRangoEmb = FileAttachment("../data/xm_embalses_rango_historico.csv").csv({typed: true});
+const xmUltimos = FileAttachment("../data/xm_embalses_ultimo.csv").csv({typed: true});
 ```
 
 ```js
@@ -30,6 +36,44 @@ const avisos = validacion.filter((d) => embalses.some((e) => e.embalse === d.obj
   <div class="card"><h2>Banda flexible</h2><span class="big">${num(resumen.banda_min_gwh)}–${num(resumen.banda_max_gwh)} GWh</span><br><span class="muted">mín. en ${resumen.mes_banda_min}, máx. en ${resumen.mes_banda_max}</span></div>
   <div class="card"><h2>Horas a potencia*</h2><span class="big">${num(resumen.horas_a_potencia_supuesto)} h</span><br><span class="muted">con ${num(resumen.potencia_regulada_mw_supuesto)} MW*</span></div>
 </div>
+
+## Nivel diario
+
+```js
+const serieCadena = xmCadenas.filter((d) => d.cadena_id === id);
+const datosCadena = conBanda(serieCadena, xmRangoCadenas.filter((d) => d.cadena_id === id), "pct_util");
+const hoyCadena = datosCadena.at(-1);
+const ultCadena = serieCadena.at(-1);
+const anios = d3.max(xmRangoCadenas.filter((d) => d.cadena_id === id), (d) => d.anios);
+```
+
+<p>Al ${fechaCO(hoyCadena.fecha)} la cadena tiene <b>${num(ultCadena.energia_gwh)} GWh</b> almacenados, el <b>${num(hoyCadena.valor, 1)} %</b> de su capacidad útil (${num(ultCadena.capacidad_gwh)} GWh). La mediana histórica para esta fecha es ${num(hoyCadena.p50, 1)} %.</p>
+
+<div class="card">
+
+```js
+display(graficaNivel(datosCadena, {width, titulo: resumen.cadena, anios}));
+```
+
+</div>
+
+```js
+const seriesCadena = [...new Set(xmUltimos.filter((d) => d.cadena_id === id).map((d) => d.serie_xm))];
+```
+
+${seriesCadena.length > 1 ? html`<h3>Por embalse</h3>` : ""}
+
+```js
+if (seriesCadena.length > 1) {
+  display(graficaEmbalsesHoy(hoyFrenteAlRango(xmUltimos.filter((d) => d.cadena_id === id), xmRangoEmb, "serie_xm", "pct_util_xm"), {width}));
+  for (const s of seriesCadena) {
+    const nombre = xmUltimos.find((d) => d.serie_xm === s).embalse;
+    const datos = conBanda(xmEmbalses.filter((d) => d.serie_xm === s), xmRangoEmb.filter((d) => d.serie_xm === s), "pct_util_xm");
+    display(html`<h4>${nombre}</h4>`);
+    display(graficaNivel(datos, {width, height: 200, titulo: nombre}));
+  }
+}
+```
 
 ## Cómo fluye el agua
 

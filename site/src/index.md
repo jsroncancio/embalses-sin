@@ -6,11 +6,16 @@ toc: false
 ```js
 import {num, MESES, COMPONENTES} from "./components/formato.js";
 import {feature} from "npm:topojson-client";
+import {conBanda, graficaNivel, graficaEmbalsesHoy, hoyFrenteAlRango, fechaCO} from "./components/nivel.js";
 
 const cadenas = FileAttachment("data/cadenas.csv").csv({typed: true});
 const embalses = FileAttachment("data/embalses.csv").csv({typed: true});
 const mensual = FileAttachment("data/cadenas_mensual.csv").csv({typed: true});
 const fuentes = FileAttachment("data/fuentes.json").json();
+const sistema = FileAttachment("data/xm_sistema_diario.csv").csv({typed: true});
+const rangoSistema = FileAttachment("data/xm_sistema_rango_historico.csv").csv({typed: true});
+const ultimosEmb = FileAttachment("data/xm_embalses_ultimo.csv").csv({typed: true});
+const rangoEmb = FileAttachment("data/xm_embalses_rango_historico.csv").csv({typed: true});
 const mundo = fetch(import.meta.resolve("npm:world-atlas/countries-50m.json")).then((r) => r.json());
 ```
 
@@ -23,6 +28,45 @@ const bandaMes = d3.rollups(mensual, (v) => d3.sum(v, (d) => d.banda_nep_npv_gwh
 const [mesMin, bandaMin] = d3.least(bandaMes, (d) => d[1]);
 const [mesMax, bandaMax] = d3.greatest(bandaMes, (d) => d[1]);
 ```
+
+## Cómo están hoy los embalses
+
+```js
+const reciente = sistema.slice(-400);
+const datosSIN = conBanda(reciente, rangoSistema, "pct_util_xm");
+const hoySIN = datosSIN.at(-1);
+const aniosHist = d3.max(rangoSistema, (d) => d.anios);
+```
+
+<div class="grid grid-cols-3">
+  <div class="card"><h2>Embalse agregado del SIN</h2><span class="big">${num(hoySIN.valor, 1)} %</span><br><span class="muted">del volumen útil al ${fechaCO(hoySIN.fecha)}</span></div>
+  <div class="card"><h2>Energía almacenada</h2><span class="big">${num(reciente.at(-1).energia_gwh)} GWh</span><br><span class="muted">de ${num(reciente.at(-1).capacidad_gwh)} GWh de capacidad útil</span></div>
+  <div class="card"><h2>Frente a lo usual</h2><span class="big">${hoySIN.valor >= hoySIN.p50 ? "+" : "−"}${num(Math.abs(hoySIN.valor - hoySIN.p50), 1)} pp</span><br><span class="muted">respecto a la mediana de este día (${num(hoySIN.p50, 1)} %)</span></div>
+</div>
+
+<div class="card">
+
+```js
+display(graficaNivel(datosSIN, {width, titulo: "SIN", anios: aniosHist}));
+```
+
+</div>
+
+```js
+const filasHoy = hoyFrenteAlRango(ultimosEmb, rangoEmb, "serie_xm", "pct_util_xm");
+```
+
+<div class="card">
+<h2>Cada embalse hoy frente a su rango usual para esta fecha</h2>
+
+```js
+display(graficaEmbalsesHoy(filasHoy, {width}));
+```
+
+<p class="muted">Barra gris: rango usual (percentiles 10 a 90) del mismo día del año; marca vertical: mediana. Sisga, Tominé y Neusa se publican juntos como agregado Bogotá.</p>
+</div>
+
+## Capacidad declarada
 
 <p class="muted">Capacidad declarada en PARATEC (XM), reporte del ${fuentes.paratec.fecha_reporte}. ${embalses.length} embalses individuales en ${cadenas.length} cadenas o sistemas.</p>
 

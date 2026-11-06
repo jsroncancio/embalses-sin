@@ -1,10 +1,25 @@
 {
- "generado": "2026-11-06T19:11:16+00:00",
+ "generado": "2026-11-06T19:44:24+00:00",
  "paratec": {
   "archivo": "data/raw/paratec/2026-11-03/PARATEC_Detalle_Embalse_03-11-2026.xlsx",
   "fecha_reporte": "2026-11-03",
   "sha256": "f899c076554f2c535b4678d630a9d18f20aa1ea6bb311ece538e9aea5b85b661",
   "origen": "XM, PARATEC: Detalle de embalse (descarga manual)"
+ },
+ "xm": {
+  "origen": "API pública de XM (servapibi.xm.com.co) vía pydataxm",
+  "ultimo_dato": null,
+  "primer_dato": null,
+  "metricas": [
+   "PorcVoluUtilDiar/Embalse",
+   "VoluUtilDiarEner/Embalse",
+   "VoluUtilDiarMasa/Embalse",
+   "CapaUtilDiarEner/Embalse",
+   "VertEner/Embalse",
+   "PorcVoluUtilDiar/Sistema",
+   "VoluUtilDiarEner/Sistema",
+   "CapaUtilDiarEner/Sistema"
+  ]
  },
  "topologia": "config/cadenas.yaml",
  "supuestos": "config/supuestos.yaml",

@@ -1,0 +1,10 @@
+regla,severidad,objeto,detalle
+energia_vs_volumen_x_factor,advertencia,Troneras,Vol. útil × factor = 58.4 GWh frente a 64.2 GWh declarados (-9 %)
+energia_vs_volumen_x_factor,advertencia,Salvajina,Vol. útil × factor = 514.4 GWh frente a 525.2 GWh declarados (-2 %)
+energia_vs_volumen_x_factor,advertencia,Ituango,Vol. útil × factor = 250.3 GWh frente a 65.9 GWh declarados (+280 %)
+energia_vs_volumen_x_factor,advertencia,Guavio,Vol. útil × factor = 1977.9 GWh frente a 1449.3 GWh declarados (+36 %)
+energia_vs_volumen_x_factor,advertencia,Esmeralda,Vol. útil × factor = 893.8 GWh frente a 1124.7 GWh declarados (-21 %)
+energia_vs_volumen_x_factor,advertencia,Amaní,Vol. útil × factor = 253.7 GWh frente a 233.1 GWh declarados (+9 %)
+energia_vs_volumen_x_factor,advertencia,Calima,Vol. útil × factor = 233.3 GWh frente a 219.0 GWh declarados (+7 %)
+energia_vs_volumen_x_factor,advertencia,Urrá,Vol. útil × factor = 140.6 GWh frente a 159.4 GWh declarados (-12 %)
+nep_faltante,advertencia,Ituango,Sin NEP ni NPV declarados en PARATEC

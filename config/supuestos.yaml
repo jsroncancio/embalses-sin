@@ -1,0 +1,49 @@
+# Parámetros que NO vienen de una fuente oficial.
+# Todo lo que está aquí se muestra en el sitio marcado como "supuesto".
+# Fase 2: las potencias se reemplazan por la capacidad efectiva neta de XM.
+
+potencia_planta_mw:
+  _fuente: >-
+    Aproximación por conocimiento general (análisis v0, nov-2026).
+    Pendiente reemplazar por capacidad efectiva neta de XM (Sinergox / API).
+  guatape: 560
+  jaguas: 170
+  playas: 207
+  san_carlos: 1240
+  troneras: 40
+  guadalupe_3_4: 472
+  tasajera: 306
+  carlos_lleras: 78
+  porce2: 405
+  porce3: 700
+  paraiso: 276
+  la_guaca: 324
+  cadena_antigua: 340
+  el_quimbo: 400
+  betania: 540
+  salvajina: 315
+  ituango: 1200
+  guavio: 1250
+  chivor: 1000
+  sogamoso: 820
+  miel_i: 396
+  calima: 132
+  alto_anchicaya: 355
+  bajo_anchicaya: 74
+  urra_i: 338
+  prado: 46
+  prado_iv: 5
+
+# Plantas que no se incluyen en la potencia asociada a la cadena porque su
+# agua no sale de los embalses modelados (aportes laterales a filo de agua).
+excluir_de_potencia: [esmeralda_sf]
+
+tolerancias:
+  energia_vs_volumen_x_factor: 0.02   # 2 %
+  volumen_util_vs_rango: 0.01         # 1 %
+
+referencias_sin:
+  capacidad_efectiva_neta_hidraulica_mw:
+    valor: 13329.37
+    fecha: 2026-10-31
+    fuente: Sinergox (XM), consulta manual de Sebastian

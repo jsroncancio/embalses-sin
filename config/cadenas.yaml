@@ -1,0 +1,287 @@
+# Topología de las cadenas hidráulicas del SIN.
+#
+# Cada cadena es un grafo dirigido: los nodos son embalses, plantas, ríos,
+# desviaciones o usos de agua; las aristas indican por dónde pasa el agua.
+#
+# - `paratec`: nombre exacto del embalse en el reporte PARATEC de XM.
+# - `filo_de_agua: true`: planta sin embalse de regulación declarado.
+# - Las potencias NO van aquí: son supuestos y viven en config/supuestos.yaml.
+#
+# Fuente: diagramas topológicos declarados por los agentes ante XM
+# (ver docs/fuentes.md) y estaciones hidrológicas de PARATEC.
+# Transcrito por el proyecto; cualquier corrección se hace en este archivo.
+
+cadenas:
+  - id: nare_guatape
+    nombre: Cadena Nare–Guatapé
+    tipo: serie
+    region: Antioquia (oriente)
+    rios: [Nare, Guatapé, San Lorenzo]
+    diagrama: Playas.pdf, SanCarlos.pdf, SanMiguel.pdf (EPM / ISAGEN)
+    nodos:
+      - {id: rio_negro, tipo: rio, nombre: Río Negro (Escuela de Minas)}
+      - {id: penol, tipo: embalse, nombre: Peñol, paratec: PEÑOL}
+      - {id: guatape, tipo: planta, nombre: Guatapé}
+      - {id: san_lorenzo, tipo: embalse, nombre: San Lorenzo, paratec: SAN LORENZO}
+      - {id: jaguas, tipo: planta, nombre: Jaguas}
+      - {id: playas_emb, tipo: embalse, nombre: Playas, paratec: PLAYAS}
+      - {id: playas, tipo: planta, nombre: Playas}
+      - {id: san_miguel_calderas, tipo: rio, nombre: San Miguel y Calderas}
+      - {id: punchina, tipo: embalse, nombre: Punchiná, paratec: PUNCHINÁ}
+      - {id: san_carlos, tipo: planta, nombre: San Carlos}
+    aristas:
+      - [rio_negro, penol]
+      - [penol, guatape]
+      - [guatape, playas_emb]
+      - [san_lorenzo, jaguas]
+      - [jaguas, playas_emb]
+      - [playas_emb, playas]
+      - [playas, punchina]
+      - [san_miguel_calderas, punchina]
+      - [punchina, san_carlos]
+    notas:
+      - Escuela de Minas, en el río Negro aguas arriba de Peñol, opera con caudal ecológico.
+      - Toma del acueducto de EPM (sistema Ayurá) en la cuenca del río Negro.
+      - Punchiná es el embalse más pequeño de la cadena y alimenta la planta más grande (San Carlos).
+
+  - id: porce_guadalupe
+    nombre: Cadena Porce–Guadalupe–Riogrande
+    tipo: serie
+    region: Antioquia (norte)
+    rios: [Grande, Tenche, Guadalupe, Medellín, Porce]
+    diagrama: Troneras.pdf, LaTasajera.pdf, Porce 2.pdf, Porce 3.pdf (EPM)
+    nodos:
+      - {id: miraflores, tipo: embalse, nombre: Miraflores, paratec: MIRAFLORES}
+      - {id: troneras_emb, tipo: embalse, nombre: Troneras, paratec: TRONERAS}
+      - {id: troneras, tipo: planta, nombre: Troneras}
+      - {id: guadalupe_3_4, tipo: planta, nombre: Guadalupe III y IV}
+      - {id: riogrande2, tipo: embalse, nombre: Riogrande II, paratec: RIOGRANDE2}
+      - {id: tasajera, tipo: planta, nombre: La Tasajera}
+      - {id: carlos_lleras, tipo: planta, nombre: Carlos Lleras, filo_de_agua: true}
+      - {id: porce2_emb, tipo: embalse, nombre: Porce II, paratec: PORCE 2}
+      - {id: porce2, tipo: planta, nombre: Porce II}
+      - {id: porce3_emb, tipo: embalse, nombre: Porce III, paratec: PORCE 3}
+      - {id: porce3, tipo: planta, nombre: Porce III}
+    aristas:
+      - [miraflores, troneras_emb]
+      - [troneras_emb, troneras]
+      - [troneras, guadalupe_3_4]
+      - [guadalupe_3_4, porce3_emb]
+      - [riogrande2, tasajera]
+      - [tasajera, carlos_lleras]
+      - [carlos_lleras, porce2_emb]
+      - [porce2_emb, porce2]
+      - [porce2, porce3_emb]
+      - [porce3_emb, porce3]
+    notas:
+      - Miraflores pasa a Troneras por el túnel Tenche.
+      - Caudal ecológico aguas abajo de Carlos Lleras y de Porce III.
+      - Riogrande II abastece el acueducto de Medellín (planta Manantiales).
+      - Riogrande I (Quebradona) y Porce IV no tienen datos de embalse en PARATEC.
+
+  - id: bogota_pagua
+    nombre: Cadena Bogotá–Pagua
+    tipo: serie
+    region: Cundinamarca
+    rios: [Bogotá, sistema Chingaza]
+    diagrama: Paraiso.pdf (Emgesa / Enel)
+    nodos:
+      - {id: sisga, tipo: embalse, nombre: Sisga, paratec: SISGA}
+      - {id: tomine, tipo: embalse, nombre: Tominé, paratec: TOMINÉ}
+      - {id: neusa, tipo: embalse, nombre: Neusa, paratec: NEUSA}
+      - {id: chuza, tipo: embalse, nombre: Chuza, paratec: CHUZA}
+      - {id: chingaza, tipo: uso, nombre: Acueducto de Bogotá (Chingaza)}
+      - {id: rio_bogota, tipo: rio, nombre: Río Bogotá (riego y acueducto)}
+      - {id: muna, tipo: embalse, nombre: Muña (bombeo), paratec: MUÑA}
+      - {id: paraiso, tipo: planta, nombre: Paraíso}
+      - {id: la_guaca, tipo: planta, nombre: La Guaca}
+      - {id: cadena_antigua, tipo: planta, nombre: Cadena antigua (Charquito a Darío Valencia)}
+    aristas:
+      - [sisga, rio_bogota]
+      - [tomine, rio_bogota]
+      - [neusa, rio_bogota]
+      - [chuza, chingaza]
+      - [chingaza, rio_bogota]
+      - [rio_bogota, muna]
+      - [muna, paraiso]
+      - [paraiso, la_guaca]
+      - [rio_bogota, cadena_antigua]
+    notas:
+      - Chuza es parte del sistema Chingaza; su agua tiene prioridad para el acueducto de Bogotá.
+      - Muña depende del bombeo desde el río Bogotá y de la calidad del agua.
+      - Demandas de riego y acueducto sobre el río Bogotá entre los nodos.
+
+  - id: alto_magdalena
+    nombre: Cadena Alto Magdalena (El Quimbo–Betania)
+    tipo: serie
+    region: Huila
+    rios: [Magdalena]
+    diagrama: diagrama Emgesa 2018
+    nodos:
+      - {id: el_quimbo_emb, tipo: embalse, nombre: El Quimbo, paratec: EL QUIMBO}
+      - {id: el_quimbo, tipo: planta, nombre: El Quimbo}
+      - {id: betania_emb, tipo: embalse, nombre: Betania, paratec: BETANIA}
+      - {id: betania, tipo: planta, nombre: Betania}
+      - {id: magdalena_abajo, tipo: rio, nombre: Río Magdalena aguas abajo}
+    aristas:
+      - [el_quimbo_emb, el_quimbo]
+      - [el_quimbo, betania_emb]
+      - [betania_emb, betania]
+      - [betania, magdalena_abajo]
+    notas:
+      - El Quimbo descarga directamente a la cola del embalse de Betania.
+
+  - id: cauca
+    nombre: Cadena Cauca (Salvajina–Ituango)
+    tipo: serie
+    region: Cauca, Valle, Caldas y Antioquia
+    rios: [Cauca]
+    diagrama: Salvajina.pdf, SanFrancisco.pdf
+    nodos:
+      - {id: salvajina_emb, tipo: embalse, nombre: Salvajina, paratec: SALVAJINA}
+      - {id: salvajina, tipo: planta, nombre: Salvajina}
+      - {id: rio_cauca, tipo: rio, nombre: Río Cauca (~800 km)}
+      - {id: esmeralda_sf, tipo: planta, nombre: Esmeralda y San Francisco (Caldas), filo_de_agua: true}
+      - {id: ituango_emb, tipo: embalse, nombre: Ituango, paratec: ITUANGO}
+      - {id: ituango, tipo: planta, nombre: Ituango}
+    aristas:
+      - [salvajina_emb, salvajina]
+      - [salvajina, rio_cauca]
+      - [esmeralda_sf, rio_cauca]
+      - [rio_cauca, ituango_emb]
+      - [ituango_emb, ituango]
+    notas:
+      - Las centrales Esmeralda y San Francisco de Caldas son filo de agua; no confundir con el embalse Esmeralda de Chivor.
+      - Ituango no tiene NEP ni NPV declarados en PARATEC.
+
+  - id: guavio
+    nombre: Embalse Guavio
+    tipo: aislado
+    region: Cundinamarca (oriente)
+    rios: [Guavio, Batatas, Chivor]
+    diagrama: diagrama Enel 2022
+    nodos:
+      - {id: desv_batatas, tipo: desviacion, nombre: Desviación río Batatas}
+      - {id: rio_guavio, tipo: rio, nombre: Río Guavio}
+      - {id: desv_chivor, tipo: desviacion, nombre: Desviación río Chivor}
+      - {id: guavio_emb, tipo: embalse, nombre: Guavio, paratec: GUAVIO}
+      - {id: guavio, tipo: planta, nombre: Guavio}
+    aristas:
+      - [desv_batatas, guavio_emb]
+      - [rio_guavio, guavio_emb]
+      - [desv_chivor, guavio_emb]
+      - [guavio_emb, guavio]
+
+  - id: esmeralda_chivor
+    nombre: Embalse Esmeralda (Chivor)
+    tipo: aislado
+    region: Boyacá
+    rios: [Batá, Negro, Rucio, Tunjita]
+    diagrama: diagrama declarado 1/12/2022 (AES Colombia)
+    nodos:
+      - {id: desv_negro, tipo: desviacion, nombre: Desviación río Negro}
+      - {id: desv_rucio, tipo: desviacion, nombre: Desviación río Rucio}
+      - {id: rio_bata, tipo: rio, nombre: Río Batá}
+      - {id: desv_tunjita, tipo: desviacion, nombre: Desviación Tunjita}
+      - {id: esmeralda, tipo: embalse, nombre: Esmeralda, paratec: ESMERALDA}
+      - {id: chivor, tipo: planta, nombre: Chivor}
+      - {id: rio_lengupa, tipo: rio, nombre: Río Lengupá}
+    aristas:
+      - [desv_negro, esmeralda]
+      - [desv_rucio, esmeralda]
+      - [rio_bata, esmeralda]
+      - [desv_tunjita, esmeralda]
+      - [esmeralda, chivor]
+      - [chivor, rio_lengupa]
+
+  - id: sogamoso
+    nombre: Embalse Topocoro (Sogamoso)
+    tipo: aislado
+    region: Santander
+    rios: [Sogamoso]
+    diagrama: Sogamoso.pdf (ISAGEN)
+    nodos:
+      - {id: rio_sogamoso, tipo: rio, nombre: Río Sogamoso}
+      - {id: topocoro, tipo: embalse, nombre: Topocoro, paratec: TOPOCORO}
+      - {id: sogamoso, tipo: planta, nombre: Sogamoso}
+    aristas:
+      - [rio_sogamoso, topocoro]
+      - [topocoro, sogamoso]
+
+  - id: la_miel
+    nombre: Embalse Amaní (Miel I)
+    tipo: aislado
+    region: Caldas
+    rios: [La Miel, Guarinó, Manso]
+    diagrama: Miel1.pdf (ISAGEN 2014)
+    nodos:
+      - {id: trasvase_guarino, tipo: desviacion, nombre: Trasvase Guarinó}
+      - {id: rio_la_miel, tipo: rio, nombre: Río La Miel}
+      - {id: trasvase_manso, tipo: desviacion, nombre: Trasvase Manso}
+      - {id: amani, tipo: embalse, nombre: Amaní, paratec: AMANÍ}
+      - {id: miel_i, tipo: planta, nombre: Miel I}
+    aristas:
+      - [trasvase_guarino, amani]
+      - [rio_la_miel, amani]
+      - [trasvase_manso, amani]
+      - [amani, miel_i]
+
+  - id: calima
+    nombre: Embalse Calima
+    tipo: aislado
+    region: Valle del Cauca
+    rios: [Calima, Bravo]
+    diagrama: sin diagrama; topología desde estaciones hidrológicas de PARATEC
+    nodos:
+      - {id: rio_calima, tipo: rio, nombre: Ríos Calima y Bravo}
+      - {id: calima_emb, tipo: embalse, nombre: Calima, paratec: CALIMA}
+      - {id: calima, tipo: planta, nombre: Calima}
+    aristas:
+      - [rio_calima, calima_emb]
+      - [calima_emb, calima]
+
+  - id: anchicaya
+    nombre: Embalse Alto Anchicayá
+    tipo: aislado
+    region: Valle del Cauca (Pacífico)
+    rios: [Anchicayá, Digua]
+    diagrama: diagrama Celsia 2021
+    nodos:
+      - {id: alto_anchicaya_emb, tipo: embalse, nombre: Alto Anchicayá, paratec: ALTOANCHICAYA}
+      - {id: alto_anchicaya, tipo: planta, nombre: Alto Anchicayá}
+      - {id: serie_digua, tipo: rio, nombre: Serie Digua}
+      - {id: bajo_anchicaya, tipo: planta, nombre: Bajo Anchicayá, filo_de_agua: true}
+    aristas:
+      - [alto_anchicaya_emb, alto_anchicaya]
+      - [alto_anchicaya, bajo_anchicaya]
+      - [serie_digua, bajo_anchicaya]
+
+  - id: urra
+    nombre: Embalse Urrá
+    tipo: aislado
+    region: Córdoba
+    rios: [Sinú]
+    diagrama: Urrá.pdf
+    nodos:
+      - {id: rio_sinu, tipo: rio, nombre: Río Sinú}
+      - {id: urra_emb, tipo: embalse, nombre: Urrá, paratec: URRÁ}
+      - {id: urra_i, tipo: planta, nombre: Urrá I}
+    aristas:
+      - [rio_sinu, urra_emb]
+      - [urra_emb, urra_i]
+
+  - id: prado
+    nombre: Embalse Prado
+    tipo: aislado
+    region: Tolima
+    rios: [Prado]
+    diagrama: Prado.pdf (EPSA 2010)
+    nodos:
+      - {id: rio_prado, tipo: rio, nombre: Río Prado}
+      - {id: prado_emb, tipo: embalse, nombre: Prado, paratec: PRADO}
+      - {id: prado, tipo: planta, nombre: Prado}
+      - {id: prado_iv, tipo: planta, nombre: Prado IV (riego ASOPRADO)}
+    aristas:
+      - [rio_prado, prado_emb]
+      - [prado_emb, prado]
+      - [prado_emb, prado_iv]

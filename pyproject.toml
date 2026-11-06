@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "embalses-sin"
+version = "0.1.0"
+description = "Cadenas de embalses del SIN colombiano: topología, capacidad y operación con datos de XM"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Juan Sebastián Roncancio" }]
+dependencies = [
+  "pandas>=2.2",
+  "openpyxl>=3.1",
+  "pyyaml>=6.0",
+  "networkx>=3.2",
+  "pandera>=0.24",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+embalses-sin = "embalses_sin.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py311"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

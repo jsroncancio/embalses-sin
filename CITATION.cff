@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "Si usa estos datos o este código, por favor cítelo así."
+title: "Embalses del SIN: cadenas hidráulicas, capacidad y operación"
+type: software
+authors:
+  - family-names: Roncancio
+    given-names: Juan Sebastián
+repository-code: "https://github.com/jsroncancio/embalses-sin"
+url: "https://jsroncancio.github.io/embalses-sin/"
+license: MIT
+version: 0.1.0
+date-released: 2026-11-06
+keywords:
+  - embalses
+  - hidroelectricidad
+  - Colombia
+  - SIN
+  - XM
+  - almacenamiento de energía

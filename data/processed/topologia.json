@@ -1,0 +1,1042 @@
+[
+ {
+  "id": "nare_guatape",
+  "nombre": "Cadena Nare–Guatapé",
+  "tipo": "serie",
+  "notas": [
+   "Escuela de Minas, en el río Negro aguas arriba de Peñol, opera con caudal ecológico.",
+   "Toma del acueducto de EPM (sistema Ayurá) en la cuenca del río Negro.",
+   "Punchiná es el embalse más pequeño de la cadena y alimenta la planta más grande (San Carlos)."
+  ],
+  "nodos": [
+   {
+    "id": "rio_negro",
+    "nombre": "Río Negro (Escuela de Minas)",
+    "tipo": "rio",
+    "capa": 0,
+    "fila": 0
+   },
+   {
+    "id": "penol",
+    "nombre": "Peñol",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 0,
+    "vol_util_mm3": 1042.18,
+    "energia_util_gwh": 4147.25,
+    "factor_gwh_mm3": 3.9858
+   },
+   {
+    "id": "guatape",
+    "nombre": "Guatapé",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "potencia_mw_supuesto": 560
+   },
+   {
+    "id": "san_lorenzo",
+    "nombre": "San Lorenzo",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 1,
+    "vol_util_mm3": 161.51,
+    "energia_util_gwh": 425.68,
+    "factor_gwh_mm3": 2.636
+   },
+   {
+    "id": "jaguas",
+    "nombre": "Jaguas",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 1,
+    "potencia_mw_supuesto": 170
+   },
+   {
+    "id": "playas_emb",
+    "nombre": "Playas",
+    "tipo": "embalse",
+    "capa": 3,
+    "fila": 0,
+    "vol_util_mm3": 48.02,
+    "energia_util_gwh": 94.9,
+    "factor_gwh_mm3": 1.9807
+   },
+   {
+    "id": "playas",
+    "nombre": "Playas",
+    "tipo": "planta",
+    "capa": 4,
+    "fila": 0,
+    "potencia_mw_supuesto": 207
+   },
+   {
+    "id": "san_miguel_calderas",
+    "nombre": "San Miguel y Calderas",
+    "tipo": "rio",
+    "capa": 4,
+    "fila": 1
+   },
+   {
+    "id": "punchina",
+    "nombre": "Punchiná",
+    "tipo": "embalse",
+    "capa": 5,
+    "fila": 0,
+    "vol_util_mm3": 43.96,
+    "energia_util_gwh": 65.84,
+    "factor_gwh_mm3": 1.4999
+   },
+   {
+    "id": "san_carlos",
+    "nombre": "San Carlos",
+    "tipo": "planta",
+    "capa": 6,
+    "fila": 0,
+    "potencia_mw_supuesto": 1240
+   }
+  ],
+  "aristas": [
+   {
+    "de": "rio_negro",
+    "a": "penol"
+   },
+   {
+    "de": "penol",
+    "a": "guatape"
+   },
+   {
+    "de": "guatape",
+    "a": "playas_emb"
+   },
+   {
+    "de": "san_lorenzo",
+    "a": "jaguas"
+   },
+   {
+    "de": "jaguas",
+    "a": "playas_emb"
+   },
+   {
+    "de": "playas_emb",
+    "a": "playas"
+   },
+   {
+    "de": "playas",
+    "a": "punchina"
+   },
+   {
+    "de": "san_miguel_calderas",
+    "a": "punchina"
+   },
+   {
+    "de": "punchina",
+    "a": "san_carlos"
+   }
+  ]
+ },
+ {
+  "id": "porce_guadalupe",
+  "nombre": "Cadena Porce–Guadalupe–Riogrande",
+  "tipo": "serie",
+  "notas": [
+   "Miraflores pasa a Troneras por el túnel Tenche.",
+   "Caudal ecológico aguas abajo de Carlos Lleras y de Porce III.",
+   "Riogrande II abastece el acueducto de Medellín (planta Manantiales).",
+   "Riogrande I (Quebradona) y Porce IV no tienen datos de embalse en PARATEC."
+  ],
+  "nodos": [
+   {
+    "id": "miraflores",
+    "nombre": "Miraflores",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 1,
+    "vol_util_mm3": 137.12,
+    "energia_util_gwh": 458.28,
+    "factor_gwh_mm3": 3.3305
+   },
+   {
+    "id": "troneras_emb",
+    "nombre": "Troneras",
+    "tipo": "embalse",
+    "capa": 2,
+    "fila": 1,
+    "vol_util_mm3": 17.52,
+    "energia_util_gwh": 64.17,
+    "factor_gwh_mm3": 3.3305
+   },
+   {
+    "id": "troneras",
+    "nombre": "Troneras",
+    "tipo": "planta",
+    "capa": 3,
+    "fila": 1,
+    "potencia_mw_supuesto": 40
+   },
+   {
+    "id": "guadalupe_3_4",
+    "nombre": "Guadalupe III y IV",
+    "tipo": "planta",
+    "capa": 4,
+    "fila": 1,
+    "potencia_mw_supuesto": 472
+   },
+   {
+    "id": "riogrande2",
+    "nombre": "Riogrande II",
+    "tipo": "embalse",
+    "capa": 0,
+    "fila": 0,
+    "vol_util_mm3": 137.62,
+    "energia_util_gwh": 544.33,
+    "factor_gwh_mm3": 3.9511
+   },
+   {
+    "id": "tasajera",
+    "nombre": "La Tasajera",
+    "tipo": "planta",
+    "capa": 1,
+    "fila": 0,
+    "potencia_mw_supuesto": 306
+   },
+   {
+    "id": "carlos_lleras",
+    "nombre": "Carlos Lleras",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "filo_de_agua": true,
+    "potencia_mw_supuesto": 78
+   },
+   {
+    "id": "porce2_emb",
+    "nombre": "Porce II",
+    "tipo": "embalse",
+    "capa": 3,
+    "fila": 0,
+    "vol_util_mm3": 85.88,
+    "energia_util_gwh": 124.55,
+    "factor_gwh_mm3": 1.4455
+   },
+   {
+    "id": "porce2",
+    "nombre": "Porce II",
+    "tipo": "planta",
+    "capa": 4,
+    "fila": 0,
+    "potencia_mw_supuesto": 405
+   },
+   {
+    "id": "porce3_emb",
+    "nombre": "Porce III",
+    "tipo": "embalse",
+    "capa": 5,
+    "fila": 0,
+    "vol_util_mm3": 131.83,
+    "energia_util_gwh": 112.13,
+    "factor_gwh_mm3": 0.8502
+   },
+   {
+    "id": "porce3",
+    "nombre": "Porce III",
+    "tipo": "planta",
+    "capa": 6,
+    "fila": 0,
+    "potencia_mw_supuesto": 700
+   }
+  ],
+  "aristas": [
+   {
+    "de": "miraflores",
+    "a": "troneras_emb"
+   },
+   {
+    "de": "troneras_emb",
+    "a": "troneras"
+   },
+   {
+    "de": "troneras",
+    "a": "guadalupe_3_4"
+   },
+   {
+    "de": "guadalupe_3_4",
+    "a": "porce3_emb"
+   },
+   {
+    "de": "riogrande2",
+    "a": "tasajera"
+   },
+   {
+    "de": "tasajera",
+    "a": "carlos_lleras"
+   },
+   {
+    "de": "carlos_lleras",
+    "a": "porce2_emb"
+   },
+   {
+    "de": "porce2_emb",
+    "a": "porce2"
+   },
+   {
+    "de": "porce2",
+    "a": "porce3_emb"
+   },
+   {
+    "de": "porce3_emb",
+    "a": "porce3"
+   }
+  ]
+ },
+ {
+  "id": "bogota_pagua",
+  "nombre": "Cadena Bogotá–Pagua",
+  "tipo": "serie",
+  "notas": [
+   "Chuza es parte del sistema Chingaza; su agua tiene prioridad para el acueducto de Bogotá.",
+   "Muña depende del bombeo desde el río Bogotá y de la calidad del agua.",
+   "Demandas de riego y acueducto sobre el río Bogotá entre los nodos."
+  ],
+  "nodos": [
+   {
+    "id": "sisga",
+    "nombre": "Sisga",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 1,
+    "vol_util_mm3": 92.28,
+    "energia_util_gwh": 410.92,
+    "factor_gwh_mm3": 4.453
+   },
+   {
+    "id": "tomine",
+    "nombre": "Tominé",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 2,
+    "vol_util_mm3": 689.53,
+    "energia_util_gwh": 3070.48,
+    "factor_gwh_mm3": 4.453
+   },
+   {
+    "id": "neusa",
+    "nombre": "Neusa",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 3,
+    "vol_util_mm3": 117.4,
+    "energia_util_gwh": 522.78,
+    "factor_gwh_mm3": 4.453
+   },
+   {
+    "id": "chuza",
+    "nombre": "Chuza",
+    "tipo": "embalse",
+    "capa": 0,
+    "fila": 0,
+    "vol_util_mm3": 218.11,
+    "energia_util_gwh": 971.24,
+    "factor_gwh_mm3": 4.453
+   },
+   {
+    "id": "chingaza",
+    "nombre": "Acueducto de Bogotá (Chingaza)",
+    "tipo": "uso",
+    "capa": 1,
+    "fila": 0
+   },
+   {
+    "id": "rio_bogota",
+    "nombre": "Río Bogotá (riego y acueducto)",
+    "tipo": "rio",
+    "capa": 2,
+    "fila": 0
+   },
+   {
+    "id": "muna",
+    "nombre": "Muña (bombeo)",
+    "tipo": "embalse",
+    "capa": 3,
+    "fila": 0,
+    "vol_util_mm3": 12.33,
+    "energia_util_gwh": 54.91,
+    "factor_gwh_mm3": 4.453
+   },
+   {
+    "id": "paraiso",
+    "nombre": "Paraíso",
+    "tipo": "planta",
+    "capa": 4,
+    "fila": 0,
+    "potencia_mw_supuesto": 276
+   },
+   {
+    "id": "la_guaca",
+    "nombre": "La Guaca",
+    "tipo": "planta",
+    "capa": 5,
+    "fila": 0,
+    "potencia_mw_supuesto": 324
+   },
+   {
+    "id": "cadena_antigua",
+    "nombre": "Cadena antigua (Charquito a Darío Valencia)",
+    "tipo": "planta",
+    "capa": 3,
+    "fila": 1,
+    "potencia_mw_supuesto": 340
+   }
+  ],
+  "aristas": [
+   {
+    "de": "sisga",
+    "a": "rio_bogota"
+   },
+   {
+    "de": "tomine",
+    "a": "rio_bogota"
+   },
+   {
+    "de": "neusa",
+    "a": "rio_bogota"
+   },
+   {
+    "de": "chuza",
+    "a": "chingaza"
+   },
+   {
+    "de": "chingaza",
+    "a": "rio_bogota"
+   },
+   {
+    "de": "rio_bogota",
+    "a": "muna"
+   },
+   {
+    "de": "rio_bogota",
+    "a": "cadena_antigua"
+   },
+   {
+    "de": "muna",
+    "a": "paraiso"
+   },
+   {
+    "de": "paraiso",
+    "a": "la_guaca"
+   }
+  ]
+ },
+ {
+  "id": "alto_magdalena",
+  "nombre": "Cadena Alto Magdalena (El Quimbo–Betania)",
+  "tipo": "serie",
+  "notas": [
+   "El Quimbo descarga directamente a la cola del embalse de Betania."
+  ],
+  "nodos": [
+   {
+    "id": "el_quimbo_emb",
+    "nombre": "El Quimbo",
+    "tipo": "embalse",
+    "capa": 0,
+    "fila": 0,
+    "vol_util_mm3": 2288.42,
+    "energia_util_gwh": 1080.74,
+    "factor_gwh_mm3": 0.4634
+   },
+   {
+    "id": "el_quimbo",
+    "nombre": "El Quimbo",
+    "tipo": "planta",
+    "capa": 1,
+    "fila": 0,
+    "potencia_mw_supuesto": 400
+   },
+   {
+    "id": "betania_emb",
+    "nombre": "Betania",
+    "tipo": "embalse",
+    "capa": 2,
+    "fila": 0,
+    "vol_util_mm3": 723.61,
+    "energia_util_gwh": 120.61,
+    "factor_gwh_mm3": 0.1638
+   },
+   {
+    "id": "betania",
+    "nombre": "Betania",
+    "tipo": "planta",
+    "capa": 3,
+    "fila": 0,
+    "potencia_mw_supuesto": 540
+   },
+   {
+    "id": "magdalena_abajo",
+    "nombre": "Río Magdalena aguas abajo",
+    "tipo": "rio",
+    "capa": 4,
+    "fila": 0
+   }
+  ],
+  "aristas": [
+   {
+    "de": "el_quimbo_emb",
+    "a": "el_quimbo"
+   },
+   {
+    "de": "el_quimbo",
+    "a": "betania_emb"
+   },
+   {
+    "de": "betania_emb",
+    "a": "betania"
+   },
+   {
+    "de": "betania",
+    "a": "magdalena_abajo"
+   }
+  ]
+ },
+ {
+  "id": "cauca",
+  "nombre": "Cadena Cauca (Salvajina–Ituango)",
+  "tipo": "serie",
+  "notas": [
+   "Las centrales Esmeralda y San Francisco de Caldas son filo de agua; no confundir con el embalse Esmeralda de Chivor.",
+   "Ituango no tiene NEP ni NPV declarados en PARATEC."
+  ],
+  "nodos": [
+   {
+    "id": "salvajina_emb",
+    "nombre": "Salvajina",
+    "tipo": "embalse",
+    "capa": 0,
+    "fila": 0,
+    "vol_util_mm3": 715.77,
+    "energia_util_gwh": 525.16,
+    "factor_gwh_mm3": 0.7187
+   },
+   {
+    "id": "salvajina",
+    "nombre": "Salvajina",
+    "tipo": "planta",
+    "capa": 1,
+    "fila": 0,
+    "potencia_mw_supuesto": 315
+   },
+   {
+    "id": "rio_cauca",
+    "nombre": "Río Cauca (~800 km)",
+    "tipo": "rio",
+    "capa": 2,
+    "fila": 0
+   },
+   {
+    "id": "esmeralda_sf",
+    "nombre": "Esmeralda y San Francisco (Caldas)",
+    "tipo": "planta",
+    "capa": 1,
+    "fila": 1,
+    "filo_de_agua": true
+   },
+   {
+    "id": "ituango_emb",
+    "nombre": "Ituango",
+    "tipo": "embalse",
+    "capa": 3,
+    "fila": 0,
+    "vol_util_mm3": 522.0,
+    "energia_util_gwh": 65.92,
+    "factor_gwh_mm3": 0.4795
+   },
+   {
+    "id": "ituango",
+    "nombre": "Ituango",
+    "tipo": "planta",
+    "capa": 4,
+    "fila": 0,
+    "potencia_mw_supuesto": 1200
+   }
+  ],
+  "aristas": [
+   {
+    "de": "salvajina_emb",
+    "a": "salvajina"
+   },
+   {
+    "de": "salvajina",
+    "a": "rio_cauca"
+   },
+   {
+    "de": "rio_cauca",
+    "a": "ituango_emb"
+   },
+   {
+    "de": "esmeralda_sf",
+    "a": "rio_cauca"
+   },
+   {
+    "de": "ituango_emb",
+    "a": "ituango"
+   }
+  ]
+ },
+ {
+  "id": "guavio",
+  "nombre": "Embalse Guavio",
+  "tipo": "aislado",
+  "notas": [],
+  "nodos": [
+   {
+    "id": "desv_batatas",
+    "nombre": "Desviación río Batatas",
+    "tipo": "desviacion",
+    "capa": 0,
+    "fila": 0
+   },
+   {
+    "id": "rio_guavio",
+    "nombre": "Río Guavio",
+    "tipo": "rio",
+    "capa": 0,
+    "fila": 1
+   },
+   {
+    "id": "desv_chivor",
+    "nombre": "Desviación río Chivor",
+    "tipo": "desviacion",
+    "capa": 0,
+    "fila": 2
+   },
+   {
+    "id": "guavio_emb",
+    "nombre": "Guavio",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 0,
+    "vol_util_mm3": 723.22,
+    "energia_util_gwh": 1449.32,
+    "factor_gwh_mm3": 2.7349
+   },
+   {
+    "id": "guavio",
+    "nombre": "Guavio",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "potencia_mw_supuesto": 1250
+   }
+  ],
+  "aristas": [
+   {
+    "de": "desv_batatas",
+    "a": "guavio_emb"
+   },
+   {
+    "de": "rio_guavio",
+    "a": "guavio_emb"
+   },
+   {
+    "de": "desv_chivor",
+    "a": "guavio_emb"
+   },
+   {
+    "de": "guavio_emb",
+    "a": "guavio"
+   }
+  ]
+ },
+ {
+  "id": "esmeralda_chivor",
+  "nombre": "Embalse Esmeralda (Chivor)",
+  "tipo": "aislado",
+  "notas": [],
+  "nodos": [
+   {
+    "id": "desv_negro",
+    "nombre": "Desviación río Negro",
+    "tipo": "desviacion",
+    "capa": 0,
+    "fila": 0
+   },
+   {
+    "id": "desv_rucio",
+    "nombre": "Desviación río Rucio",
+    "tipo": "desviacion",
+    "capa": 0,
+    "fila": 1
+   },
+   {
+    "id": "rio_bata",
+    "nombre": "Río Batá",
+    "tipo": "rio",
+    "capa": 0,
+    "fila": 2
+   },
+   {
+    "id": "desv_tunjita",
+    "nombre": "Desviación Tunjita",
+    "tipo": "desviacion",
+    "capa": 0,
+    "fila": 3
+   },
+   {
+    "id": "esmeralda",
+    "nombre": "Esmeralda",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 0,
+    "vol_util_mm3": 460.78,
+    "energia_util_gwh": 1124.69,
+    "factor_gwh_mm3": 1.9398
+   },
+   {
+    "id": "chivor",
+    "nombre": "Chivor",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "potencia_mw_supuesto": 1000
+   },
+   {
+    "id": "rio_lengupa",
+    "nombre": "Río Lengupá",
+    "tipo": "rio",
+    "capa": 3,
+    "fila": 0
+   }
+  ],
+  "aristas": [
+   {
+    "de": "desv_negro",
+    "a": "esmeralda"
+   },
+   {
+    "de": "desv_rucio",
+    "a": "esmeralda"
+   },
+   {
+    "de": "rio_bata",
+    "a": "esmeralda"
+   },
+   {
+    "de": "desv_tunjita",
+    "a": "esmeralda"
+   },
+   {
+    "de": "esmeralda",
+    "a": "chivor"
+   },
+   {
+    "de": "chivor",
+    "a": "rio_lengupa"
+   }
+  ]
+ },
+ {
+  "id": "sogamoso",
+  "nombre": "Embalse Topocoro (Sogamoso)",
+  "tipo": "aislado",
+  "notas": [],
+  "nodos": [
+   {
+    "id": "rio_sogamoso",
+    "nombre": "Río Sogamoso",
+    "tipo": "rio",
+    "capa": 0,
+    "fila": 0
+   },
+   {
+    "id": "topocoro",
+    "nombre": "Topocoro",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 0,
+    "vol_util_mm3": 2650.65,
+    "energia_util_gwh": 1032.16,
+    "factor_gwh_mm3": 0.3881
+   },
+   {
+    "id": "sogamoso",
+    "nombre": "Sogamoso",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "potencia_mw_supuesto": 820
+   }
+  ],
+  "aristas": [
+   {
+    "de": "rio_sogamoso",
+    "a": "topocoro"
+   },
+   {
+    "de": "topocoro",
+    "a": "sogamoso"
+   }
+  ]
+ },
+ {
+  "id": "la_miel",
+  "nombre": "Embalse Amaní (Miel I)",
+  "tipo": "aislado",
+  "notas": [],
+  "nodos": [
+   {
+    "id": "trasvase_guarino",
+    "nombre": "Trasvase Guarinó",
+    "tipo": "desviacion",
+    "capa": 0,
+    "fila": 0
+   },
+   {
+    "id": "rio_la_miel",
+    "nombre": "Río La Miel",
+    "tipo": "rio",
+    "capa": 0,
+    "fila": 1
+   },
+   {
+    "id": "trasvase_manso",
+    "nombre": "Trasvase Manso",
+    "tipo": "desviacion",
+    "capa": 0,
+    "fila": 2
+   },
+   {
+    "id": "amani",
+    "nombre": "Amaní",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 0,
+    "vol_util_mm3": 441.79,
+    "energia_util_gwh": 233.09,
+    "factor_gwh_mm3": 0.5742
+   },
+   {
+    "id": "miel_i",
+    "nombre": "Miel I",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "potencia_mw_supuesto": 396
+   }
+  ],
+  "aristas": [
+   {
+    "de": "trasvase_guarino",
+    "a": "amani"
+   },
+   {
+    "de": "rio_la_miel",
+    "a": "amani"
+   },
+   {
+    "de": "trasvase_manso",
+    "a": "amani"
+   },
+   {
+    "de": "amani",
+    "a": "miel_i"
+   }
+  ]
+ },
+ {
+  "id": "calima",
+  "nombre": "Embalse Calima",
+  "tipo": "aislado",
+  "notas": [],
+  "nodos": [
+   {
+    "id": "rio_calima",
+    "nombre": "Ríos Calima y Bravo",
+    "tipo": "rio",
+    "capa": 0,
+    "fila": 0
+   },
+   {
+    "id": "calima_emb",
+    "nombre": "Calima",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 0,
+    "vol_util_mm3": 424.94,
+    "energia_util_gwh": 219.01,
+    "factor_gwh_mm3": 0.549
+   },
+   {
+    "id": "calima",
+    "nombre": "Calima",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "potencia_mw_supuesto": 132
+   }
+  ],
+  "aristas": [
+   {
+    "de": "rio_calima",
+    "a": "calima_emb"
+   },
+   {
+    "de": "calima_emb",
+    "a": "calima"
+   }
+  ]
+ },
+ {
+  "id": "anchicaya",
+  "nombre": "Embalse Alto Anchicayá",
+  "tipo": "aislado",
+  "notas": [],
+  "nodos": [
+   {
+    "id": "alto_anchicaya_emb",
+    "nombre": "Alto Anchicayá",
+    "tipo": "embalse",
+    "capa": 0,
+    "fila": 0,
+    "vol_util_mm3": 32.06,
+    "energia_util_gwh": 36.51,
+    "factor_gwh_mm3": 1.1388
+   },
+   {
+    "id": "alto_anchicaya",
+    "nombre": "Alto Anchicayá",
+    "tipo": "planta",
+    "capa": 1,
+    "fila": 0,
+    "potencia_mw_supuesto": 355
+   },
+   {
+    "id": "serie_digua",
+    "nombre": "Serie Digua",
+    "tipo": "rio",
+    "capa": 1,
+    "fila": 1
+   },
+   {
+    "id": "bajo_anchicaya",
+    "nombre": "Bajo Anchicayá",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "filo_de_agua": true,
+    "potencia_mw_supuesto": 74
+   }
+  ],
+  "aristas": [
+   {
+    "de": "alto_anchicaya_emb",
+    "a": "alto_anchicaya"
+   },
+   {
+    "de": "alto_anchicaya",
+    "a": "bajo_anchicaya"
+   },
+   {
+    "de": "serie_digua",
+    "a": "bajo_anchicaya"
+   }
+  ]
+ },
+ {
+  "id": "urra",
+  "nombre": "Embalse Urrá",
+  "tipo": "aislado",
+  "notas": [],
+  "nodos": [
+   {
+    "id": "rio_sinu",
+    "nombre": "Río Sinú",
+    "tipo": "rio",
+    "capa": 0,
+    "fila": 0
+   },
+   {
+    "id": "urra_emb",
+    "nombre": "Urrá",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 0,
+    "vol_util_mm3": 1064.16,
+    "energia_util_gwh": 159.44,
+    "factor_gwh_mm3": 0.1321
+   },
+   {
+    "id": "urra_i",
+    "nombre": "Urrá I",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "potencia_mw_supuesto": 338
+   }
+  ],
+  "aristas": [
+   {
+    "de": "rio_sinu",
+    "a": "urra_emb"
+   },
+   {
+    "de": "urra_emb",
+    "a": "urra_i"
+   }
+  ]
+ },
+ {
+  "id": "prado",
+  "nombre": "Embalse Prado",
+  "tipo": "aislado",
+  "notas": [],
+  "nodos": [
+   {
+    "id": "rio_prado",
+    "nombre": "Río Prado",
+    "tipo": "rio",
+    "capa": 0,
+    "fila": 0
+   },
+   {
+    "id": "prado_emb",
+    "nombre": "Prado",
+    "tipo": "embalse",
+    "capa": 1,
+    "fila": 0,
+    "vol_util_mm3": 653.07,
+    "energia_util_gwh": 89.15,
+    "factor_gwh_mm3": 0.1384
+   },
+   {
+    "id": "prado",
+    "nombre": "Prado",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 0,
+    "potencia_mw_supuesto": 46
+   },
+   {
+    "id": "prado_iv",
+    "nombre": "Prado IV (riego ASOPRADO)",
+    "tipo": "planta",
+    "capa": 2,
+    "fila": 1,
+    "potencia_mw_supuesto": 5
+   }
+  ],
+  "aristas": [
+   {
+    "de": "rio_prado",
+    "a": "prado_emb"
+   },
+   {
+    "de": "prado_emb",
+    "a": "prado"
+   },
+   {
+    "de": "prado_emb",
+    "a": "prado_iv"
+   }
+  ]
+ }
+]

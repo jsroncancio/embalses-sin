@@ -101,7 +101,7 @@ def run(raiz: Path = RAIZ, copiar_sitio: bool = True) -> int:
             "origen": "API pública de XM (servapibi.xm.com.co) vía pydataxm",
             "ultimo_dato": str(oper["xm_sistema_diario.csv"]["fecha"].max().date()) if oper else None,
             "primer_dato": str(oper["xm_sistema_diario.csv"]["fecha"].min().date()) if oper else None,
-            "metricas": [f"{m}/{e}" for m, e, _ in xm.METRICAS],
+            "metricas": [f"{m}/{e}" for m, e, *_ in xm.METRICAS],
         },
         "topologia": "config/cadenas.yaml",
         "supuestos": "config/supuestos.yaml",

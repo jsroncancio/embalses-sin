@@ -23,7 +23,7 @@ concurrency:
 jobs:
   actualizar:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -38,12 +38,20 @@ jobs:
           else
             embalses-sin xm
           fi
-      - name: Procesar y validar (se detiene si hay errores)
-        run: embalses-sin run
-      - name: Guardar los cambios
+      - name: Guardar lo descargado aunque la descarga se haya cortado
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw/xm
+          if ! git diff --cached --quiet; then
+            git commit -m "Datos crudos XM al $(date -u +%Y-%m-%d)"
+            git push
+          fi
+      - name: Procesar y validar (se detiene si hay errores)
+        run: embalses-sin run
+      - name: Guardar los datos procesados
+        run: |
           git add data site/src/data
           if git diff --cached --quiet; then
             echo "Sin cambios"

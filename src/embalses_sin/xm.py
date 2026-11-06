@@ -11,24 +11,26 @@ corrige datos recientes, y reemplaza esas filas.
 from __future__ import annotations
 
 import datetime as dt
+import time
 from pathlib import Path
 
 import pandas as pd
 
-# (métrica, entidad, unidad original). Nombres verificados contra el inventario
-# `ListadoMetricas` de la API (corrida "Explorar API XM", 2026-11-06).
+# (métrica, entidad, unidad original, inicio del histórico). Nombres verificados
+# contra el inventario `ListadoMetricas` de la API (corrida "Explorar API XM", 2026-11-06).
+# Las métricas que alimentan las bandas históricas van desde 2000; el resto,
+# solo los últimos años, para que la carga inicial no tarde horas.
 METRICAS = [
-    ("PorcVoluUtilDiar", "Embalse", "fracción"),
-    ("VoluUtilDiarEner", "Embalse", "kWh"),
-    ("VoluUtilDiarMasa", "Embalse", "m3"),
-    ("CapaUtilDiarEner", "Embalse", "kWh"),
-    ("VertEner", "Embalse", "kWh"),
-    ("PorcVoluUtilDiar", "Sistema", "fracción"),
-    ("VoluUtilDiarEner", "Sistema", "kWh"),
-    ("CapaUtilDiarEner", "Sistema", "kWh"),
+    ("PorcVoluUtilDiar", "Embalse", "fracción", dt.date(2000, 1, 1)),
+    ("VoluUtilDiarEner", "Embalse", "kWh", dt.date(2000, 1, 1)),
+    ("CapaUtilDiarEner", "Embalse", "kWh", dt.date(2000, 1, 1)),
+    ("VoluUtilDiarMasa", "Embalse", "m3", dt.date(2024, 1, 1)),
+    ("VertEner", "Embalse", "kWh", dt.date(2024, 1, 1)),
+    ("PorcVoluUtilDiar", "Sistema", "fracción", dt.date(2000, 1, 1)),
+    ("VoluUtilDiarEner", "Sistema", "kWh", dt.date(2000, 1, 1)),
+    ("CapaUtilDiarEner", "Sistema", "kWh", dt.date(2000, 1, 1)),
 ]
 
-INICIO_HISTORICO = dt.date(2000, 1, 1)
 REVISION_DIAS = 7
 
 
@@ -90,16 +92,16 @@ def actualizar(raiz: Path, api=None, desde: dt.date | None = None, hasta: dt.dat
         api = pydataxm.ReadDB()
     hasta = hasta or dt.date.today()
     resumen = {}
-    for metrica, entidad, _ in METRICAS:
+    for metrica, entidad, _, inicio_hist in METRICAS:
         inicio = desde
         if inicio is None:
             ultima = ultima_fecha(raiz, metrica, entidad)
-            inicio = INICIO_HISTORICO if ultima is None else ultima - dt.timedelta(days=REVISION_DIAS)
+            inicio = inicio_hist if ultima is None else ultima - dt.timedelta(days=REVISION_DIAS)
         n = 0
         # Por años, para no lanzar cientos de peticiones simultáneas a XM.
         for a, b in _tramos_anuales(inicio, hasta):
             print(f"{metrica}/{entidad}: {a} a {b}", flush=True)
-            df = api.request_data(metrica, entidad, a, b)
+            df = _con_reintentos(api, metrica, entidad, a, b)
             n += guardar_crudo(raiz, metrica, entidad, df if df is not None else pd.DataFrame())
         resumen[f"{metrica}_{entidad}"] = n
         print(f"  {n} filas", flush=True)
@@ -114,3 +116,16 @@ def _tramos_anuales(inicio: dt.date, fin: dt.date) -> list[tuple[dt.date, dt.dat
         tramos.append((a, b))
         a = b + dt.timedelta(days=1)
     return tramos
+
+
+def _con_reintentos(api, metrica, entidad, a, b, intentos=4, espera=15):
+    """La API de XM a veces corta la conexión: reintenta con espera creciente."""
+    for i in range(intentos):
+        try:
+            return api.request_data(metrica, entidad, a, b)
+        except Exception as e:
+            if i == intentos - 1:
+                raise
+            print(f"  intento {i + 1} falló ({type(e).__name__}); reintento en {espera * 2**i} s", flush=True)
+            time.sleep(espera * 2**i)
+    return None

@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-06T19:44:29+00:00",
+ "generado": "2026-11-06T19:54:58+00:00",
  "paratec": {
   "archivo": "data/raw/paratec/2026-11-03/PARATEC_Detalle_Embalse_03-11-2026.xlsx",
   "fecha_reporte": "2026-11-03",
@@ -13,8 +13,8 @@
   "metricas": [
    "PorcVoluUtilDiar/Embalse",
    "VoluUtilDiarEner/Embalse",
-   "VoluUtilDiarMasa/Embalse",
    "CapaUtilDiarEner/Embalse",
+   "VoluUtilDiarMasa/Embalse",
    "VertEner/Embalse",
    "PorcVoluUtilDiar/Sistema",
    "VoluUtilDiarEner/Sistema",

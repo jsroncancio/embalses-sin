@@ -16,6 +16,8 @@ dependencies = [
   "pyyaml>=6.0",
   "networkx>=3.2",
   "pandera>=0.24",
+  "pyarrow>=15",
+  "pydataxm>=0.3.19",
 ]
 
 [project.optional-dependencies]

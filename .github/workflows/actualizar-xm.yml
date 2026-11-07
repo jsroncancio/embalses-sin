@@ -1,0 +1,57 @@
+name: Actualizar datos XM
+
+on:
+  schedule:
+    - cron: "30 13 * * *" # 8:30 a. m. hora de Colombia
+  workflow_dispatch:
+    inputs:
+      desde:
+        description: "Fecha inicial AAAA-MM-DD (vacío = incremental)"
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: actualizar-xm
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -e .
+      - name: Descargar de la API de XM
+        run: |
+          if [ -n "${{ inputs.desde }}" ]; then
+            embalses-sin xm --desde "${{ inputs.desde }}"
+          else
+            embalses-sin xm
+          fi
+      - name: Guardar lo descargado aunque la descarga se haya cortado
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw/xm
+          if ! git diff --cached --quiet; then
+            git commit -m "Datos crudos XM al $(date -u +%Y-%m-%d)"
+            git push
+          fi
+      - name: Procesar y validar (se detiene si hay errores)
+        run: embalses-sin run
+      - name: Guardar los datos procesados
+        run: |
+          git add data site/src/data
+          if git diff --cached --quiet; then
+            echo "Sin cambios"
+          else
+            git commit -m "Datos XM al $(date -u +%Y-%m-%d)"
+            git push
+          fi

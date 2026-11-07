@@ -8,3 +8,13 @@ energia_vs_volumen_x_factor,advertencia,Amaní,Vol. útil × factor = 253.7 GWh 
 energia_vs_volumen_x_factor,advertencia,Calima,Vol. útil × factor = 233.3 GWh frente a 219.0 GWh declarados (+7 %)
 energia_vs_volumen_x_factor,advertencia,Urrá,Vol. útil × factor = 140.6 GWh frente a 159.4 GWh declarados (-12 %)
 nep_faltante,advertencia,Ituango,Sin NEP ni NPV declarados en PARATEC
+xm_pct_fuera_de_rango,advertencia,ITUANGO,3 días con % útil fuera de −20 a 120 % (p. ej. 2026-10-02)
+xm_pct_fuera_de_rango,advertencia,PLAYAS,15 días con % útil fuera de −20 a 120 % (p. ej. 2025-04-27)
+xm_pct_fuera_de_rango,advertencia,TRONERAS,3 días con % útil fuera de −20 a 120 % (p. ej. 2025-05-05)
+xm_vs_paratec,advertencia,AMANI,Capacidad útil XM 253.7 GWh frente a 233.1 GWh en PARATEC (+9 %)
+xm_vs_paratec,advertencia,CALIMA1,Capacidad útil XM 233.3 GWh frente a 219.0 GWh en PARATEC (+7 %)
+xm_vs_paratec,advertencia,ESMERALDA,Capacidad útil XM 893.8 GWh frente a 1124.7 GWh en PARATEC (-21 %)
+xm_vs_paratec,advertencia,GUAVIO,Capacidad útil XM 1977.9 GWh frente a 1449.3 GWh en PARATEC (+36 %)
+xm_vs_paratec,advertencia,TRONERAS,Capacidad útil XM 58.4 GWh frente a 64.2 GWh en PARATEC (-9 %)
+xm_vs_paratec,advertencia,ITUANGO,Capacidad útil XM 250.3 GWh frente a 65.9 GWh en PARATEC (+280 %)
+xm_vs_paratec,advertencia,URRA1,Capacidad útil XM 140.6 GWh frente a 159.4 GWh en PARATEC (-12 %)

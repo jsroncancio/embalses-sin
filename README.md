@@ -4,11 +4,12 @@ Análisis reproducible de los embalses del Sistema Interconectado Nacional (SIN)
 
 **Sitio:** https://jsroncancio.github.io/embalses-sin/ (se publica con GitHub Pages en cada cambio a `main`).
 
-## Qué hay hoy (fase 1)
+## Qué hay hoy
 
 - **13 cadenas o sistemas** con su topología como grafo (`config/cadenas.yaml`): 26 embalses individuales y sus plantas.
 - **Capacidad declarada en PARATEC (XM)**, reporte del 3 de noviembre de 2026: 13.636 Mm³ y 17.203 GWh de energía útil.
 - **Banda flexible NEP–NPV** por embalse, cadena y mes: entre 10.503 GWh (diciembre) y 14.361 GWh (abril) para el SIN.
+- **Nivel diario de cada embalse** desde enero de 2025, descargado de la API pública de XM cada mañana (8:30 a. m.) y comparado con la banda NEP–NPV del mes.
 - **Validación automática** de esquemas, reglas físicas y topología. Las inconsistencias de la fuente se publican como advertencias, no se corrigen en silencio.
 
 | Tipo de cifra | Ejemplo | Dónde vive |
@@ -22,6 +23,7 @@ Análisis reproducible de los embalses del Sistema Interconectado Nacional (SIN)
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -e ".[dev]"
+embalses-sin xm         # descarga lo nuevo de la API de XM a data/raw/xm
 embalses-sin run        # lee data/raw, calcula, valida y escribe data/processed
 pytest                  # pruebas, incluidos los totales conocidos
 
@@ -44,7 +46,7 @@ site/              sitio web (Observable Framework)
 ## Hoja de ruta
 
 1. **Base y catálogo** (esta versión): PARATEC, topología, validación y sitio.
-2. **Datos de XM**: API pública (`pydataxm`) para capacidad efectiva neta por planta y series diarias de volumen, aportes y vertimientos, con actualización diaria automática.
+2. **Datos de XM** (en curso): nivel diario por embalse listo; falta capacidad efectiva neta por planta para reemplazar las potencias supuestas.
 3. **Operación**: perfiles horarios de generación, autonomía por cadena con datos reales, comparador.
 4. **Publicación**: revisión de licencias, metodología completa, versión 1.0 con DOI.
 

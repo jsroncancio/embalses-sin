@@ -18,6 +18,7 @@ Cada cifra del sitio es de uno de tres tipos: **dato oficial** de XM, **cálculo
 | --- | --- | --- |
 | PARATEC, XM: Detalle de embalse | Niveles, volúmenes, factor de conversión, energía útil, curvas guía, NEP y NPV | `data/raw/paratec/<fecha>/` |
 | Diagramas topológicos de los agentes declarados ante XM | Conexiones aguas arriba y abajo, desviaciones, usos de agua | `config/cadenas.yaml` (transcrito a mano) |
+| API pública de XM (servapibi, vía `pydataxm`) | Nivel diario por embalse y del SIN desde 2025: % del volumen útil, energía almacenada y capacidad útil | `data/raw/xm/` (se actualiza a diario) |
 | Sinergox, XM | Totales de referencia del SIN | `config/supuestos.yaml` |
 
 ```js
@@ -37,6 +38,8 @@ html`<p>Reporte PARATEC usado: <code>${fuentes.paratec.archivo}</code>, generado
 Se asume factor de conversión constante con el nivel, la misma convención de PARATEC.
 
 **Horas a potencia (supuesto).** Energía útil × 1.000 ÷ suma de la potencia de las plantas que turbinan esa agua, sin contar aportes. Es un orden de magnitud: la cifra real depende del caudal máximo de la primera planta, que se incorporará cuando haya datos de turbinamiento.
+
+**Nivel diario.** Es el volumen útil como porcentaje de la capacidad útil, tal como lo publica XM (métrica `PorcVoluUtilDiar`); XM no publica la cota en m.s.n.m. El nivel de una cadena es su energía almacenada sobre su capacidad útil, ambas sumadas en GWh. La referencia de cada gráfica es la banda NEP–NPV del mes; para una cadena o el SIN se pondera por la energía útil de PARATEC.
 
 ## Supuestos vigentes
 

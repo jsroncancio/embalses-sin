@@ -140,3 +140,50 @@ def validar_factor_acumulado(cadenas: list[Cadena], embalses: pd.DataFrame) -> l
 
 def a_tabla(hallazgos: list[Hallazgo]) -> pd.DataFrame:
     return pd.DataFrame([asdict(h) for h in hallazgos], columns=["regla", "severidad", "objeto", "detalle"])
+
+
+def validar_xm(diaria: pd.DataFrame, series: pd.DataFrame, embalses: pd.DataFrame, hoy: pd.Timestamp) -> list[Hallazgo]:
+    """Reglas sobre las series diarias de XM."""
+    hallazgos = []
+    en_xm = set(diaria["serie_xm"])
+    esperadas = set(series["serie_xm"])
+    for s in sorted(esperadas - en_xm):
+        hallazgos.append(Hallazgo("xm_serie_faltante", "error", s, "La serie no llegó de la API de XM"))
+    for s in sorted(en_xm - esperadas):
+        hallazgos.append(Hallazgo("xm_serie_sin_mapear", "advertencia", s, "Embalse de XM sin cadena asignada en config/cadenas.yaml"))
+
+    ultima = diaria.groupby("serie_xm")["fecha"].max()
+    for s, f in ultima.items():
+        dias = (hoy - f).days
+        if s in esperadas and dias > 5:
+            hallazgos.append(Hallazgo("xm_dato_viejo", "advertencia", s, f"Último dato del {f.date()} ({dias} días)"))
+
+    raros = diaria[(diaria["pct_util"] < -20) | (diaria["pct_util"] > 120)]
+    for s, g in raros.groupby("serie_xm"):
+        hallazgos.append(
+            Hallazgo(
+                "xm_pct_fuera_de_rango",
+                "advertencia",
+                s,
+                f"{len(g)} días con % útil fuera de −20 a 120 % (p. ej. {g['fecha'].iloc[0].date()})",
+            )
+        )
+
+    # Cruce con PARATEC: capacidad útil del último día frente a la energía útil declarada.
+    ult = diaria.sort_values("fecha").groupby("serie_xm").tail(1).set_index("serie_xm")["capacidad_gwh"]
+    paratec = embalses.merge(
+        series.assign(nodo_id=series["nodos"].str.split(", ")).explode("nodo_id")[["nodo_id", "serie_xm"]], on="nodo_id"
+    )
+    paratec = paratec.groupby("serie_xm")["energia_util_gwh"].sum()
+    for s in ult.index.intersection(paratec.index):
+        dif = ult[s] / paratec[s] - 1
+        if abs(dif) > 0.05:
+            hallazgos.append(
+                Hallazgo(
+                    "xm_vs_paratec",
+                    "advertencia",
+                    s,
+                    f"Capacidad útil XM {ult[s]:.1f} GWh frente a {paratec[s]:.1f} GWh en PARATEC ({dif * 100:+.0f} %)",
+                )
+            )
+    return hallazgos

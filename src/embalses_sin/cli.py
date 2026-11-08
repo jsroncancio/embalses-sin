@@ -16,7 +16,7 @@ from pathlib import Path
 
 import yaml
 
-from . import calculos, operacion, paratec, validacion, xm
+from . import calculos, capacidad, operacion, paratec, validacion, xm
 from .topologia import cargar_cadenas
 
 RAIZ = Path(__file__).resolve().parents[2]
@@ -36,8 +36,10 @@ def _sha256(ruta: Path) -> str:
 def run(raiz: Path = RAIZ, copiar_sitio: bool = True) -> int:
     ruta = _ultimo_paratec(raiz)
     supuestos = yaml.safe_load((raiz / "config/supuestos.yaml").read_text(encoding="utf-8"))
-    potencias = {k: v for k, v in supuestos["potencia_planta_mw"].items() if not k.startswith("_")}
+    supuestas = {k: v for k, v in supuestos["potencia_planta_mw"].items() if not k.startswith("_")}
     cadenas = cargar_cadenas(raiz / "config/cadenas.yaml")
+    tabla_cap = capacidad.tabla_capacidad(raiz, cadenas, supuestas)
+    potencias = capacidad.potencias(tabla_cap)
 
     basica = paratec.leer_informacion_basica(ruta)
     tecnica = paratec.leer_informacion_tecnica(ruta)
@@ -56,6 +58,7 @@ def run(raiz: Path = RAIZ, copiar_sitio: bool = True) -> int:
         + validacion.validar_esquemas(embalses, nep)
         + validacion.validar_fisica(embalses, nep, supuestos["tolerancias"])
         + validacion.validar_factor_acumulado(cadenas, embalses)
+        + validacion.validar_capacidad(tabla_cap)
     )
     oper = operacion.tablas_operacion(raiz, cadenas, nep)
     if oper:
@@ -80,6 +83,7 @@ def run(raiz: Path = RAIZ, copiar_sitio: bool = True) -> int:
         "curvas_guia.csv": curvas,
         "cadenas.csv": resumen,
         "cadenas_mensual.csv": mensual,
+        "capacidad_plantas.csv": tabla_cap,
         "validacion.csv": tabla_hallazgos,
         **oper,
     }
@@ -102,6 +106,11 @@ def run(raiz: Path = RAIZ, copiar_sitio: bool = True) -> int:
             "ultimo_dato": str(oper["xm_sistema_diario.csv"]["fecha"].max().date()) if oper else None,
             "primer_dato": str(oper["xm_sistema_diario.csv"]["fecha"].min().date()) if oper else None,
             "metricas": [f"{m}/{e}" for m, e, *_ in xm.METRICAS],
+        },
+        "capacidad": {
+            "origen": "XM, capacidad efectiva neta por recurso (CapEfecNeta)",
+            "fecha": str(tabla_cap["fecha_xm"].dropna().max()) if tabla_cap["fecha_xm"].notna().any() else None,
+            "plantas_con_supuesto": tabla_cap.loc[tabla_cap["fuente"] == "supuesto", "planta"].tolist(),
         },
         "topologia": "config/cadenas.yaml",
         "supuestos": "config/supuestos.yaml",

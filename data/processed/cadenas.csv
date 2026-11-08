@@ -1,14 +1,14 @@
-cadena_id,cadena,tipo,region,rios,n_embalses,n_plantas,vol_util_mm3,energia_util_gwh,pct_energia_sin,potencia_regulada_mw_supuesto,horas_a_potencia_supuesto,banda_min_gwh,mes_banda_min,banda_max_gwh,mes_banda_max,nep_incompleto,diagrama_fuente
-nare_guatape,Cadena Nare–Guatapé,serie,Antioquia (oriente),"Nare, Guatapé, San Lorenzo",4,4,1295.67,4733.67,27.5161,2177,2174.4006,3965.9511,dic,4556.0265,abr,False,"Playas.pdf, SanCarlos.pdf, SanMiguel.pdf (EPM / ISAGEN)"
-porce_guadalupe,Cadena Porce–Guadalupe–Riogrande,serie,Antioquia (norte),"Grande, Tenche, Guadalupe, Medellín, Porce",5,6,509.97,1303.46,7.5768,2001,651.4043,824.0585,ene,1191.1698,jun,False,"Troneras.pdf, LaTasajera.pdf, Porce 2.pdf, Porce 3.pdf (EPM)"
-bogota_pagua,Cadena Bogotá–Pagua,serie,Cundinamarca,"Bogotá, sistema Chingaza",5,3,1129.65,5030.33,29.2406,940,5351.4149,2867.2881,sep,3823.0508,jun,False,Paraiso.pdf (Emgesa / Enel)
-alto_magdalena,Cadena Alto Magdalena (El Quimbo–Betania),serie,Huila,Magdalena,2,2,3012.03,1201.35,6.9833,940,1278.0319,774.9895,oct,1153.296,jul,False,diagrama Emgesa 2018
-cauca,Cadena Cauca (Salvajina–Ituango),serie,"Cauca, Valle, Caldas y Antioquia",Cauca,2,3,1237.77,591.08,3.4359,1515,390.1518,215.3156,ago,325.5992,jun,True,"Salvajina.pdf, SanFrancisco.pdf"
-guavio,Embalse Guavio,aislado,Cundinamarca (oriente),"Guavio, Batatas, Chivor",1,1,723.22,1449.32,8.4247,1250,1159.456,753.6464,oct,1420.3336,may,False,diagrama Enel 2022
-esmeralda_chivor,Embalse Esmeralda (Chivor),aislado,Boyacá,"Batá, Negro, Rucio, Tunjita",1,1,460.78,1124.69,6.5377,1000,1124.69,0.0,oct,1045.9617,may,False,diagrama declarado 1/12/2022 (AES Colombia)
-sogamoso,Embalse Topocoro (Sogamoso),aislado,Santander,Sogamoso,1,1,2650.65,1032.16,5.9998,820,1258.7317,196.1104,dic,701.8688,mar,False,Sogamoso.pdf (ISAGEN)
-la_miel,Embalse Amaní (Miel I),aislado,Caldas,"La Miel, Guarinó, Manso",1,1,441.79,233.09,1.3549,396,588.6111,167.8248,jul,223.7664,feb,False,Miel1.pdf (ISAGEN 2014)
-calima,Embalse Calima,aislado,Valle del Cauca,"Calima, Bravo",1,1,424.94,219.01,1.2731,132,1659.1667,210.2496,jul,219.01,oct,False,sin diagrama; topología desde estaciones hidrológicas de PARATEC
-anchicaya,Embalse Alto Anchicayá,aislado,Valle del Cauca (Pacífico),"Anchicayá, Digua",1,2,32.06,36.51,0.2122,429,85.1049,0.0,jul,21.5409,abr,False,diagrama Celsia 2021
-urra,Embalse Urrá,aislado,Córdoba,Sinú,1,1,1064.16,159.44,0.9268,338,471.716,0.0,ene,148.2792,oct,False,Urrá.pdf
-prado,Embalse Prado,aislado,Tolima,Prado,1,2,653.07,89.15,0.5182,51,1748.0392,55.273,jun,65.0795,abr,False,Prado.pdf (EPSA 2010)
+cadena_id,cadena,tipo,region,rios,n_embalses,n_plantas,vol_util_mm3,energia_util_gwh,pct_energia_sin,potencia_regulada_mw,horas_a_potencia,banda_min_gwh,mes_banda_min,banda_max_gwh,mes_banda_max,nep_incompleto,diagrama_fuente
+nare_guatape,Cadena Nare–Guatapé,serie,Antioquia (oriente),"Nare, Guatapé, San Lorenzo",4,4,1295.67,4733.67,27.5161,2177.0,2174.4006,3965.9511,dic,4556.0265,abr,False,"Playas.pdf, SanCarlos.pdf, SanMiguel.pdf (EPM / ISAGEN)"
+porce_guadalupe,Cadena Porce–Guadalupe–Riogrande,serie,Antioquia (norte),"Grande, Tenche, Guadalupe, Medellín, Porce",5,6,509.97,1303.46,7.5768,2001.0,651.4043,824.0585,ene,1191.1698,jun,False,"Troneras.pdf, LaTasajera.pdf, Porce 2.pdf, Porce 3.pdf (EPM)"
+bogota_pagua,Cadena Bogotá–Pagua,serie,Cundinamarca,"Bogotá, sistema Chingaza",5,3,1129.65,5030.33,29.2406,897.2,5606.6986,2867.2881,sep,3823.0508,jun,False,Paraiso.pdf (Emgesa / Enel)
+alto_magdalena,Cadena Alto Magdalena (El Quimbo–Betania),serie,Huila,Magdalena,2,2,3012.03,1201.35,6.9833,940.0,1278.0319,774.9895,oct,1153.296,jul,False,diagrama Emgesa 2018
+cauca,Cadena Cauca (Salvajina–Ituango),serie,"Cauca, Valle, Caldas y Antioquia",Cauca,2,3,1237.77,591.08,3.4359,1515.0,390.1518,215.3156,ago,325.5992,jun,True,"Salvajina.pdf, SanFrancisco.pdf"
+guavio,Embalse Guavio,aislado,Cundinamarca (oriente),"Guavio, Batatas, Chivor",1,1,723.22,1449.32,8.4247,1250.0,1159.456,753.6464,oct,1420.3336,may,False,diagrama Enel 2022
+esmeralda_chivor,Embalse Esmeralda (Chivor),aislado,Boyacá,"Batá, Negro, Rucio, Tunjita",1,1,460.78,1124.69,6.5377,1000.0,1124.69,0.0,oct,1045.9617,may,False,diagrama declarado 1/12/2022 (AES Colombia)
+sogamoso,Embalse Topocoro (Sogamoso),aislado,Santander,Sogamoso,1,1,2650.65,1032.16,5.9998,819.0,1260.2686,196.1104,dic,701.8688,mar,False,Sogamoso.pdf (ISAGEN)
+la_miel,Embalse Amaní (Miel I),aislado,Caldas,"La Miel, Guarinó, Manso",1,1,441.79,233.09,1.3549,396.0,588.6111,167.8248,jul,223.7664,feb,False,Miel1.pdf (ISAGEN 2014)
+calima,Embalse Calima,aislado,Valle del Cauca,"Calima, Bravo",1,1,424.94,219.01,1.2731,132.0,1659.1667,210.2496,jul,219.01,oct,False,sin diagrama; topología desde estaciones hidrológicas de PARATEC
+anchicaya,Embalse Alto Anchicayá,aislado,Valle del Cauca (Pacífico),"Anchicayá, Digua",1,2,32.06,36.51,0.2122,427.0,85.5035,0.0,jul,21.5409,abr,False,diagrama Celsia 2021
+urra,Embalse Urrá,aislado,Córdoba,Sinú,1,1,1064.16,159.44,0.9268,338.0,471.716,0.0,ene,148.2792,oct,False,Urrá.pdf
+prado,Embalse Prado,aislado,Tolima,Prado,1,2,653.07,89.15,0.5182,57.5,1550.4348,55.273,jun,65.0795,abr,False,Prado.pdf (EPSA 2010)

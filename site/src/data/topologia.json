@@ -32,7 +32,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 0,
-    "potencia_mw_supuesto": 560
+    "potencia_mw": 560.0
    },
    {
     "id": "san_lorenzo",
@@ -50,7 +50,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 1,
-    "potencia_mw_supuesto": 170
+    "potencia_mw": 170.0
    },
    {
     "id": "playas_emb",
@@ -68,7 +68,7 @@
     "tipo": "planta",
     "capa": 4,
     "fila": 0,
-    "potencia_mw_supuesto": 207
+    "potencia_mw": 207.0
    },
    {
     "id": "san_miguel_calderas",
@@ -93,7 +93,7 @@
     "tipo": "planta",
     "capa": 6,
     "fila": 0,
-    "potencia_mw_supuesto": 1240
+    "potencia_mw": 1240.0
    }
   ],
   "aristas": [
@@ -172,7 +172,7 @@
     "tipo": "planta",
     "capa": 3,
     "fila": 1,
-    "potencia_mw_supuesto": 40
+    "potencia_mw": 512.0
    },
    {
     "id": "guadalupe_3_4",
@@ -180,7 +180,7 @@
     "tipo": "planta",
     "capa": 4,
     "fila": 1,
-    "potencia_mw_supuesto": 472
+    "potencia_mw": 0.0
    },
    {
     "id": "riogrande2",
@@ -198,7 +198,7 @@
     "tipo": "planta",
     "capa": 1,
     "fila": 0,
-    "potencia_mw_supuesto": 306
+    "potencia_mw": 306.0
    },
    {
     "id": "carlos_lleras",
@@ -207,7 +207,7 @@
     "capa": 2,
     "fila": 0,
     "filo_de_agua": true,
-    "potencia_mw_supuesto": 78
+    "potencia_mw": 78.0
    },
    {
     "id": "porce2_emb",
@@ -225,7 +225,7 @@
     "tipo": "planta",
     "capa": 4,
     "fila": 0,
-    "potencia_mw_supuesto": 405
+    "potencia_mw": 405.0
    },
    {
     "id": "porce3_emb",
@@ -243,7 +243,7 @@
     "tipo": "planta",
     "capa": 6,
     "fila": 0,
-    "potencia_mw_supuesto": 700
+    "potencia_mw": 700.0
    }
   ],
   "aristas": [
@@ -369,7 +369,7 @@
     "tipo": "planta",
     "capa": 4,
     "fila": 0,
-    "potencia_mw_supuesto": 276
+    "potencia_mw": 600.0
    },
    {
     "id": "la_guaca",
@@ -377,7 +377,7 @@
     "tipo": "planta",
     "capa": 5,
     "fila": 0,
-    "potencia_mw_supuesto": 324
+    "potencia_mw": 0.0
    },
    {
     "id": "cadena_antigua",
@@ -385,7 +385,7 @@
     "tipo": "planta",
     "capa": 3,
     "fila": 1,
-    "potencia_mw_supuesto": 340
+    "potencia_mw": 297.2
    }
   ],
   "aristas": [
@@ -451,7 +451,7 @@
     "tipo": "planta",
     "capa": 1,
     "fila": 0,
-    "potencia_mw_supuesto": 400
+    "potencia_mw": 400.0
    },
    {
     "id": "betania_emb",
@@ -469,7 +469,7 @@
     "tipo": "planta",
     "capa": 3,
     "fila": 0,
-    "potencia_mw_supuesto": 540
+    "potencia_mw": 540.0
    },
    {
     "id": "magdalena_abajo",
@@ -523,7 +523,7 @@
     "tipo": "planta",
     "capa": 1,
     "fila": 0,
-    "potencia_mw_supuesto": 315
+    "potencia_mw": 315.0
    },
    {
     "id": "rio_cauca",
@@ -538,7 +538,8 @@
     "tipo": "planta",
     "capa": 1,
     "fila": 1,
-    "filo_de_agua": true
+    "filo_de_agua": true,
+    "potencia_mw": 165.0
    },
    {
     "id": "ituango_emb",
@@ -556,7 +557,7 @@
     "tipo": "planta",
     "capa": 4,
     "fila": 0,
-    "potencia_mw_supuesto": 1200
+    "potencia_mw": 1200.0
    }
   ],
   "aristas": [
@@ -625,7 +626,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 0,
-    "potencia_mw_supuesto": 1250
+    "potencia_mw": 1250.0
    }
   ],
   "aristas": [
@@ -697,7 +698,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 0,
-    "potencia_mw_supuesto": 1000
+    "potencia_mw": 1000.0
    },
    {
     "id": "rio_lengupa",
@@ -763,7 +764,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 0,
-    "potencia_mw_supuesto": 820
+    "potencia_mw": 819.0
    }
   ],
   "aristas": [
@@ -820,7 +821,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 0,
-    "potencia_mw_supuesto": 396
+    "potencia_mw": 396.0
    }
   ],
   "aristas": [
@@ -871,7 +872,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 0,
-    "potencia_mw_supuesto": 132
+    "potencia_mw": 132.0
    }
   ],
   "aristas": [
@@ -907,7 +908,7 @@
     "tipo": "planta",
     "capa": 1,
     "fila": 0,
-    "potencia_mw_supuesto": 355
+    "potencia_mw": 427.0
    },
    {
     "id": "serie_digua",
@@ -923,7 +924,7 @@
     "capa": 2,
     "fila": 0,
     "filo_de_agua": true,
-    "potencia_mw_supuesto": 74
+    "potencia_mw": 0.0
    }
   ],
   "aristas": [
@@ -970,7 +971,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 0,
-    "potencia_mw_supuesto": 338
+    "potencia_mw": 338.0
    }
   ],
   "aristas": [
@@ -1013,7 +1014,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 0,
-    "potencia_mw_supuesto": 46
+    "potencia_mw": 51.0
    },
    {
     "id": "prado_iv",
@@ -1021,7 +1022,7 @@
     "tipo": "planta",
     "capa": 2,
     "fila": 1,
-    "potencia_mw_supuesto": 5
+    "potencia_mw": 6.5
    }
   ],
   "aristas": [

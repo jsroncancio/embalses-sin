@@ -142,6 +142,24 @@ def a_tabla(hallazgos: list[Hallazgo]) -> pd.DataFrame:
     return pd.DataFrame([asdict(h) for h in hallazgos], columns=["regla", "severidad", "objeto", "detalle"])
 
 
+def validar_capacidad(tabla: pd.DataFrame) -> list[Hallazgo]:
+    """Plantas sin capacidad efectiva neta de XM (usan el supuesto o no tienen potencia)."""
+    hallazgos = []
+    for _, f in tabla.iterrows():
+        if f["fuente"] == "supuesto":
+            hallazgos.append(
+                Hallazgo(
+                    "capacidad_supuesta",
+                    "advertencia",
+                    f["planta"],
+                    f"Sin dato de XM para {f['recursos_xm'] or 'ningún recurso'}; se usa la potencia aproximada de config/supuestos.yaml",
+                )
+            )
+        elif pd.isna(f["potencia_mw"]):
+            hallazgos.append(Hallazgo("capacidad_faltante", "advertencia", f["planta"], "Sin capacidad de XM ni potencia supuesta"))
+    return hallazgos
+
+
 def validar_xm(diaria: pd.DataFrame, series: pd.DataFrame, embalses: pd.DataFrame, hoy: pd.Timestamp) -> list[Hallazgo]:
     """Reglas sobre las series diarias de XM."""
     hallazgos = []

@@ -9,6 +9,7 @@ Análisis reproducible de los embalses del Sistema Interconectado Nacional (SIN)
 - **13 cadenas o sistemas** con su topología como grafo (`config/cadenas.yaml`): 26 embalses individuales y sus plantas.
 - **Capacidad declarada en PARATEC (XM)**, reporte del 3 de noviembre de 2026: 13.636 Mm³ y 17.203 GWh de energía útil.
 - **Banda flexible NEP–NPV** por embalse, cadena y mes: entre 10.503 GWh (diciembre) y 14.361 GWh (abril) para el SIN.
+- **Capacidad efectiva neta de cada planta** (XM), para calcular cuántas horas puede entregar cada cadena a plena potencia.
 - **Nivel diario de cada embalse** desde enero de 2025, descargado de la API pública de XM cada mañana (8:30 a. m.) y comparado con la banda NEP–NPV del mes.
 - **Validación automática** de esquemas, reglas físicas y topología. Las inconsistencias de la fuente se publican como advertencias, no se corrigen en silencio.
 
@@ -16,7 +17,7 @@ Análisis reproducible de los embalses del Sistema Interconectado Nacional (SIN)
 | --- | --- | --- |
 | Dato oficial | Volumen útil, factor de conversión, NEP y NPV | `data/raw/` (XM, sin modificar) |
 | Cálculo | Energía útil por cadena, banda flexible mensual | `src/embalses_sin/calculos.py` |
-| Supuesto | Potencia por planta (hasta la fase 2) | `config/supuestos.yaml`, marcado con * en el sitio |
+| Dato oficial | Capacidad efectiva neta por planta | `data/raw/xm/CapEfecNeta_Recurso/` (XM, a diario) |
 
 ## Cómo reproducirlo
 
@@ -46,7 +47,7 @@ site/              sitio web (Observable Framework)
 ## Hoja de ruta
 
 1. **Base y catálogo** (esta versión): PARATEC, topología, validación y sitio.
-2. **Datos de XM** (en curso): nivel diario por embalse listo; falta capacidad efectiva neta por planta para reemplazar las potencias supuestas.
+2. **Datos de XM** (hecha): nivel diario por embalse y capacidad efectiva neta por planta, actualizados a diario.
 3. **Operación**: perfiles horarios de generación, autonomía por cadena con datos reales, comparador.
 4. **Publicación**: revisión de licencias, metodología completa, versión 1.0 con DOI.
 

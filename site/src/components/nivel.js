@@ -1,6 +1,6 @@
 import * as Plot from "npm:@observablehq/plot";
 import * as d3 from "npm:d3";
-import {num} from "./formato.js";
+import {num, COLORES} from "./formato.js";
 
 export const fechaCO = d3.utcFormat("%d/%m/%Y");
 const MESES_LARGOS = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
@@ -9,9 +9,9 @@ export const fechaLarga = (d) => `${d.getUTCDate()} de ${MESES_LARGOS[d.getUTCMo
 const mesDe = (d) => d.getUTCMonth() + 1;
 
 export const ESTADOS = {
-  bajo: {nombre: "Bajo el NEP (reserva)", color: "#c0392b"},
-  banda: {nombre: "En la banda NEP–NPV", color: "#2b7bb9"},
-  alto: {nombre: "Sobre el NPV (cerca de verter)", color: "#d68910"}
+  bajo: {nombre: "Bajo el NEP (reserva)", color: COLORES.bajo},
+  banda: {nombre: "En la banda NEP–NPV", color: COLORES.banda},
+  alto: {nombre: "Sobre el NPV (cerca de verter)", color: COLORES.sobre}
 };
 
 export function estado(valor, nep, npv) {

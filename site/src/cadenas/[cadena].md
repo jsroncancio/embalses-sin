@@ -109,7 +109,11 @@ display(Plot.plot({
 const sinNep = embalses.filter((e) => !nep.some((n) => n.nodo_id === e.nodo_id && n.nep != null)).map((e) => e.embalse);
 ```
 
-${sinNep.length ? html`<p class="warning">${sinNep.join(", ")} no ${sinNep.length > 1 ? "tienen" : "tiene"} NEP ni NPV declarados en PARATEC; su energía (${num(d3.sum(embalses.filter((e) => sinNep.includes(e.embalse)), (e) => e.energia_util_gwh))} GWh) no aparece en el gráfico.</p>` : ""}
+${sinNep.length ? html`<p class="warning">${sinNep.map((nombre) => {
+  const e = embalses.find((x) => x.embalse === nombre);
+  const xm = ultimosCadena.find((u) => u.embalse === nombre);
+  return html`<b>${nombre}</b> no tiene NEP ni NPV declarados en PARATEC, así que su energía no aparece en el gráfico: ${num(e.energia_util_gwh)} GWh según PARATEC${xm ? html` (XM le calcula ${num(xm.capacidad_gwh)} GWh de capacidad útil; la diferencia está en la cifra declarada en PARATEC)` : ""}. `;
+})}</p>` : ""}
 
 ## Embalses
 

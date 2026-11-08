@@ -25,15 +25,26 @@ Cada cifra del sitio es de uno de tres tipos: **dato oficial** de XM, **cálculo
 html`<p>Reporte PARATEC usado: <code>${fuentes.paratec.archivo}</code>, generado el ${fuentes.paratec.fecha_reporte}. Suma SHA-256: <code>${fuentes.paratec.sha256.slice(0, 16)}…</code>. Datos procesados el ${fuentes.generado.slice(0, 10)}.</p>`
 ```
 
+## Qué son el NEP y el NPV
+
+Cada agente declara en PARATEC, para cada embalse y cada mes, dos niveles expresados como porcentaje del volumen útil:
+
+- **NEP, Nivel ENFICC Probabilístico.** Es el "nivel del embalse de una planta hidráulica suficiente para generar la ENFICC Base de la planta", aun con los aportes más críticos de la historia. La ENFICC es la energía firme que la planta compromete en el Cargo por Confiabilidad (Resolución CREG 071 de 2006). Por debajo del NEP el embalse está usando su reserva de confiabilidad.
+- **NPV, Nivel de Probabilidad de Vertimiento.** Es el "nivel del embalse de una planta hidráulica a partir del cual existe probabilidad de vertimiento". Por encima, el agua que llegue puede salir por el rebosadero sin generar.
+
+Las definiciones citadas son las del estatuto para situaciones de riesgo de desabastecimiento de la CREG (proyecto 701 143 de 2026, adoptado como Resolución CREG 101 127 de 2026). Durante un período de riesgo de desabastecimiento, ese estatuto usa el NEP y el NPV para fijar la curva de oferta de las plantas hidráulicas con embalse.
+
+Cuando un embalse declara el mismo valor para NEP y NPV, la banda flexible de ese mes es cero: el agente indica que el embalse debe quedarse en ese nivel.
+
 ## Cálculos
 
 **Energía útil de una cadena.** Es la suma de la energía útil declarada por cada embalse. El factor de conversión de PARATEC es acumulado: ya incluye todas las plantas aguas abajo. Por ejemplo, Peñol tiene 3,99 GWh/Mm³, Playas 1,98 y Punchiná 1,50, porque el agua de Peñol turbina en Guatapé, Playas y San Carlos. El pipeline comprueba en cada corrida que el factor de un embalse nunca es menor que el de un embalse aguas abajo.
 
 **Franjas mensuales.** Para cada embalse y mes, con E = energía útil:
 
-- Bajo NEP = NEP × E (reserva que no se debería usar).
+- Bajo el NEP = NEP × E (reserva que no se debería usar).
 - Banda flexible = (NPV − NEP) × E.
-- Sobre NPV = (1 − NPV) × E (por encima, riesgo de vertimiento).
+- Sobre el NPV = (1 − NPV) × E (por encima, riesgo de vertimiento).
 
 Se asume factor de conversión constante con el nivel, la misma convención de PARATEC.
 

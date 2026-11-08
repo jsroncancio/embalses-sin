@@ -70,7 +70,7 @@ display(graficaNivel(datosSIN, {width, titulo: "SIN"}));
 display(graficaEmbalsesHoy(filasHoy, {width}));
 ```
 
-<p class="muted">Punto: nivel de hoy. Franja azul: banda NEP–NPV del mes. Raya roja (arriba): NEP. Raya naranja (abajo): NPV. Cuando un embalse declara el mismo valor para NEP y NPV (como Playas en varios meses), la banda tiene ancho cero y solo se ven las dos rayas juntas; si son casi iguales (como Esmeralda), la franja es muy delgada. Ituango no tiene NEP ni NPV declarados, por eso no tiene banda. Sisga, Tominé y Neusa se publican juntos en XM como agregado Bogotá.</p>
+<p class="muted">Punto: nivel de hoy. Franja azul: banda NEP–NPV del mes. Raya roja: NEP. Raya naranja: NPV. La distancia del punto a cada raya muestra qué tan cerca está el embalse de cada límite. Cuando un embalse declara el mismo valor para NEP y NPV (como Playas en varios meses), la banda tiene ancho cero y las dos rayas quedan juntas; si son casi iguales (como Esmeralda), la franja es muy delgada. Ituango no tiene NEP ni NPV declarados, por eso no tiene banda ni rayas (punto gris). Sisga, Tominé y Neusa se publican juntos en XM como agregado Bogotá.</p>
 </div>
 
 ## Capacidad declarada

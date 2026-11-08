@@ -68,11 +68,13 @@ export function graficaEmbalsesHoy(filas, {width} = {}) {
     color: {domain: Object.values(ESTADOS).map((e) => e.nombre), range: Object.values(ESTADOS).map((e) => e.color), legend: true},
     marks: [
       Plot.barX(conRef, {y: "embalse", x1: "nep", x2: "npv", fill: ESTADOS.banda.color, fillOpacity: 0.15, insetTop: 5, insetBottom: 5}),
-      // NEP (rojo, mitad superior) y NPV (naranja, mitad inferior): si coinciden, se ven las dos.
-      Plot.tickX(conRef, {y: "embalse", x: "nep", stroke: ESTADOS.bajo.color, strokeWidth: 2.5, insetTop: 3, insetBottom: 13}),
-      Plot.tickX(conRef, {y: "embalse", x: "npv", stroke: ESTADOS.alto.color, strokeWidth: 2.5, insetTop: 13, insetBottom: 3}),
-      Plot.dot(filas, {y: "embalse", x: "valor", r: 5, fill: (d) => ESTADOS[estado(d.valor, d.nep, d.npv)]?.nombre ?? "gray"}),
-      Plot.text(filas, {y: "embalse", x: "valor", text: (d) => `${num(d.valor, 0)} %`, dx: 10, textAnchor: "start", fontSize: 11}),
+      // Límites del mes: raya roja en el NEP y naranja en el NPV, más altas que la franja.
+      // Se separan 2 px para que se vean las dos cuando NEP = NPV (p. ej. Playas).
+      Plot.tickX(conRef, {y: "embalse", x: "nep", stroke: ESTADOS.bajo.color, strokeWidth: 3, dx: -2, insetTop: -2, insetBottom: -2}),
+      Plot.tickX(conRef, {y: "embalse", x: "npv", stroke: ESTADOS.alto.color, strokeWidth: 3, dx: 2, insetTop: -2, insetBottom: -2}),
+      Plot.dot(conRef, {y: "embalse", x: "valor", r: 5, fill: (d) => ESTADOS[estado(d.valor, d.nep, d.npv)].nombre}),
+      Plot.dot(filas.filter((d) => d.nep == null), {y: "embalse", x: "valor", r: 5, fill: "gray"}),
+      Plot.text(filas, {y: "embalse", x: "valor", text: (d) => `${num(d.valor, 0)} %`, dx: 10, textAnchor: "start", fontSize: 11, stroke: "var(--theme-background)", strokeWidth: 3}),
       Plot.tip(filas, Plot.pointerY({
         y: "embalse", x: "valor",
         title: (d) => `${d.embalse}\nHoy: ${num(d.valor, 1)} %` + (d.nep != null ? `\nBanda del mes: ${num(d.nep, 0)}–${num(d.npv, 0)} %` : "\nSin NEP/NPV declarados")

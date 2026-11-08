@@ -27,6 +27,9 @@ METRICAS = [
     ("CapaUtilDiarEner", "Embalse", "kWh", INICIO),
     ("PorcVoluUtilDiar", "Sistema", "fracción", INICIO),
     ("VoluUtilDiarEner", "Sistema", "kWh", INICIO),
+    # Capacidad efectiva neta por recurso (kW). XM publica ~1.000 recursos; solo se
+    # guardan los códigos que aparecen en config/cadenas.yaml (`xm_recursos`).
+    ("CapEfecNeta", "Recurso", "kW", INICIO),
 ]
 
 REVISION_DIAS = 7
@@ -52,6 +55,8 @@ def ultima_fecha(raiz: Path, metrica: str, entidad: str) -> dt.date | None:
 
 def _normalizar(df: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
+    if "Name" not in df.columns and "Code" in df.columns:
+        df = df.rename(columns={"Code": "Name"})
     if "Name" not in df.columns:
         df["Name"] = "SIN"
     df = df[["Name", "Value", "Date"]]
@@ -89,6 +94,7 @@ def actualizar(raiz: Path, api=None, desde: dt.date | None = None, hasta: dt.dat
 
         api = pydataxm.ReadDB()
     hasta = hasta or dt.date.today()
+    filtros = {("CapEfecNeta", "Recurso"): _codigos_recursos(raiz)}
     resumen = {}
     for metrica, entidad, _, inicio_hist in METRICAS:
         inicio = desde
@@ -100,10 +106,25 @@ def actualizar(raiz: Path, api=None, desde: dt.date | None = None, hasta: dt.dat
         for a, b in _tramos_anuales(inicio, hasta):
             print(f"{metrica}/{entidad}: {a} a {b}", flush=True)
             df = _con_reintentos(api, metrica, entidad, a, b)
+            codigos = filtros.get((metrica, entidad))
+            if df is not None and codigos is not None and "Code" in df.columns:
+                df = df[df["Code"].astype(str).str.strip().isin(codigos)]
             n += guardar_crudo(raiz, metrica, entidad, df if df is not None else pd.DataFrame())
         resumen[f"{metrica}_{entidad}"] = n
         print(f"  {n} filas", flush=True)
     return resumen
+
+
+def _codigos_recursos(raiz: Path) -> set[str]:
+    """Códigos de recurso XM declarados en config/cadenas.yaml."""
+    from .topologia import cargar_cadenas
+
+    return {
+        str(cod)
+        for c in cargar_cadenas(raiz / "config/cadenas.yaml")
+        for _, attrs in c.grafo.nodes(data=True)
+        for cod in attrs.get("xm_recursos", [])
+    }
 
 
 def _tramos_anuales(inicio: dt.date, fin: dt.date) -> list[tuple[dt.date, dt.date]]:

@@ -43,7 +43,7 @@ const avisos = validacion.filter((d) => embalses.some((e) => e.embalse === d.obj
   <div class="card"><h2>Energía útil</h2><span class="big">${num(resumen.energia_util_gwh)} GWh</span><br><span class="muted">${num(resumen.pct_energia_sin, 1)} % del SIN</span></div>
   <div class="card"><h2>Volumen útil</h2><span class="big">${num(resumen.vol_util_mm3)} Mm³</span><br><span class="muted">${resumen.n_embalses} embalses, ${resumen.n_plantas} plantas</span></div>
   <div class="card"><h2>Banda flexible</h2><span class="big">${num(resumen.banda_min_gwh)}–${num(resumen.banda_max_gwh)} GWh</span><br><span class="muted">mín. en ${resumen.mes_banda_min}, máx. en ${resumen.mes_banda_max}</span></div>
-  <div class="card"><h2>Horas a potencia*</h2><span class="big">${num(resumen.horas_a_potencia_supuesto)} h</span><br><span class="muted">con ${num(resumen.potencia_regulada_mw_supuesto)} MW*</span></div>
+  <div class="card"><h2>Horas a potencia</h2><span class="big">${num(resumen.horas_a_potencia)} h</span><br><span class="muted">con ${num(resumen.potencia_regulada_mw)} MW de capacidad efectiva neta</span></div>
 </div>
 
 ## Nivel diario
@@ -119,19 +119,19 @@ ${sinNep.length ? html`<p class="warning">${sinNep.map((nombre) => {
 
 ```js
 Inputs.table(embalses, {
-  columns: ["embalse", "operador", "vol_util_mm3", "energia_util_gwh", "factor_gwh_mm3", "nivel_min_tecnico_msnm", "nivel_max_fisico_msnm", "plantas_aguas_abajo", "dias_a_potencia_supuesto", "regimen_supuesto"],
+  columns: ["embalse", "operador", "vol_util_mm3", "energia_util_gwh", "factor_gwh_mm3", "nivel_min_tecnico_msnm", "nivel_max_fisico_msnm", "plantas_aguas_abajo", "dias_a_potencia", "regimen"],
   header: {
     embalse: "Embalse", operador: "Operador", vol_util_mm3: "Vol. útil (Mm³)", energia_util_gwh: "Energía útil (GWh)", factor_gwh_mm3: "Factor (GWh/Mm³)",
     nivel_min_tecnico_msnm: "Nivel mín. técnico (msnm)", nivel_max_fisico_msnm: "Nivel máx. físico (msnm)", plantas_aguas_abajo: "Plantas aguas abajo",
-    dias_a_potencia_supuesto: "Días a potencia*", regimen_supuesto: "Régimen*"
+    dias_a_potencia: "Días a potencia", regimen: "Régimen"
   },
   format: {
     vol_util_mm3: (d) => num(d, 1), energia_util_gwh: (d) => num(d, 1), factor_gwh_mm3: (d) => num(d, 4),
-    nivel_min_tecnico_msnm: (d) => num(d, 1), nivel_max_fisico_msnm: (d) => num(d, 1), dias_a_potencia_supuesto: (d) => num(d, 1)
+    nivel_min_tecnico_msnm: (d) => num(d, 1), nivel_max_fisico_msnm: (d) => num(d, 1), dias_a_potencia: (d) => num(d, 1)
   }
 })
 ```
 
 ${avisos.length ? html`<h2>Advertencias de datos</h2><ul>${avisos.map((a) => html`<li><b>${a.objeto}:</b> ${a.detalle}</li>`)}</ul>` : ""}
 
-<p class="muted">* Supuesto: potencias aproximadas, pendientes de la capacidad efectiva neta de XM. Régimen por días a potencia: 60 o más multianual, 10 a 60 estacional, menos de 10 semanal o diario.</p>
+<p class="muted">Potencias: capacidad efectiva neta publicada por XM (ver <a href="../metodologia">metodología</a>). Régimen por días a potencia: 60 o más multianual, 10 a 60 estacional, menos de 10 semanal o diario.</p>

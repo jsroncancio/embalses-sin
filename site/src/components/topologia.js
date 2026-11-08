@@ -17,7 +17,7 @@ const ESTILO = {
 function subtitulo(n) {
   if (n.tipo === "embalse") return `${num(n.energia_util_gwh)} GWh · ${num(n.vol_util_mm3)} Mm³`;
   if (n.tipo === "planta") {
-    const p = n.potencia_mw_supuesto != null ? `${num(n.potencia_mw_supuesto)} MW*` : "";
+    const p = n.potencia_mw != null ? `${num(n.potencia_mw)} MW` : "";
     return n.filo_de_agua ? `filo de agua ${p}`.trim() : p;
   }
   return {rio: "río / aporte", desviacion: "desviación", uso: "uso de agua"}[n.tipo];

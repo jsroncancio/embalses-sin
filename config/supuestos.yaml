@@ -1,6 +1,6 @@
 # Parámetros que NO vienen de una fuente oficial.
 # Todo lo que está aquí se muestra en el sitio marcado como "supuesto".
-# Fase 2: las potencias se reemplazan por la capacidad efectiva neta de XM.
+# Potencias aproximadas: solo se usan si XM no publica la capacidad efectiva neta de la planta.
 
 potencia_planta_mw:
   _fuente: >-

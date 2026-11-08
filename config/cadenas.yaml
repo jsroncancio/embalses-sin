@@ -7,7 +7,10 @@
 # - `xm`: nombre del embalse en la API de XM (servapibi). Sisga, Tominé y Neusa
 #   solo se publican juntos como "AGREGADO BOGOTA".
 # - `filo_de_agua: true`: planta sin embalse de regulación declarado.
-# - Las potencias NO van aquí: son supuestos y viven en config/supuestos.yaml.
+# - Plantas: `xm_recursos` = códigos de recurso de XM cuya capacidad efectiva neta
+#   (métrica CapEfecNeta) se suma para la planta. Cuando XM publica varias plantas
+#   como un solo recurso (GUATRON, PAGUA, ALBAN), la capacidad se asigna a la
+#   primera y las demás llevan `xm_en: <planta>`.
 #
 # Fuente: diagramas topológicos declarados por los agentes ante XM
 # (ver docs/fuentes.md) y estaciones hidrológicas de PARATEC.
@@ -23,14 +26,14 @@ cadenas:
     nodos:
       - {id: rio_negro, tipo: rio, nombre: Río Negro (Escuela de Minas)}
       - {id: penol, tipo: embalse, nombre: Peñol, paratec: PEÑOL, xm: PENOL}
-      - {id: guatape, tipo: planta, nombre: Guatapé}
+      - {id: guatape, tipo: planta, nombre: Guatapé, xm_recursos: [GTPE]}
       - {id: san_lorenzo, tipo: embalse, nombre: San Lorenzo, paratec: SAN LORENZO, xm: SAN LORENZO}
-      - {id: jaguas, tipo: planta, nombre: Jaguas}
+      - {id: jaguas, tipo: planta, nombre: Jaguas, xm_recursos: [JAGS]}
       - {id: playas_emb, tipo: embalse, nombre: Playas, paratec: PLAYAS, xm: PLAYAS}
-      - {id: playas, tipo: planta, nombre: Playas}
+      - {id: playas, tipo: planta, nombre: Playas, xm_recursos: [PLYS]}
       - {id: san_miguel_calderas, tipo: rio, nombre: San Miguel y Calderas}
       - {id: punchina, tipo: embalse, nombre: Punchiná, paratec: PUNCHINÁ, xm: PUNCHINA}
-      - {id: san_carlos, tipo: planta, nombre: San Carlos}
+      - {id: san_carlos, tipo: planta, nombre: San Carlos, xm_recursos: [SNCR]}
     aristas:
       - [rio_negro, penol]
       - [penol, guatape]
@@ -55,15 +58,15 @@ cadenas:
     nodos:
       - {id: miraflores, tipo: embalse, nombre: Miraflores, paratec: MIRAFLORES, xm: MIRAFLORES}
       - {id: troneras_emb, tipo: embalse, nombre: Troneras, paratec: TRONERAS, xm: TRONERAS}
-      - {id: troneras, tipo: planta, nombre: Troneras}
-      - {id: guadalupe_3_4, tipo: planta, nombre: Guadalupe III y IV}
+      - {id: troneras, tipo: planta, nombre: Troneras, xm_recursos: [GTRG]}
+      - {id: guadalupe_3_4, tipo: planta, nombre: Guadalupe III y IV, xm_en: troneras}
       - {id: riogrande2, tipo: embalse, nombre: Riogrande II, paratec: RIOGRANDE2, xm: RIOGRANDE2}
-      - {id: tasajera, tipo: planta, nombre: La Tasajera}
-      - {id: carlos_lleras, tipo: planta, nombre: Carlos Lleras, filo_de_agua: true}
+      - {id: tasajera, tipo: planta, nombre: La Tasajera, xm_recursos: [LTSJ]}
+      - {id: carlos_lleras, tipo: planta, nombre: Carlos Lleras, filo_de_agua: true, xm_recursos: [CLL1]}
       - {id: porce2_emb, tipo: embalse, nombre: Porce II, paratec: PORCE 2, xm: PORCE II}
-      - {id: porce2, tipo: planta, nombre: Porce II}
+      - {id: porce2, tipo: planta, nombre: Porce II, xm_recursos: [PRC2]}
       - {id: porce3_emb, tipo: embalse, nombre: Porce III, paratec: PORCE 3, xm: PORCE III}
-      - {id: porce3, tipo: planta, nombre: Porce III}
+      - {id: porce3, tipo: planta, nombre: Porce III, xm_recursos: [PRC3]}
     aristas:
       - [miraflores, troneras_emb]
       - [troneras_emb, troneras]
@@ -95,9 +98,9 @@ cadenas:
       - {id: chingaza, tipo: uso, nombre: Acueducto de Bogotá (Chingaza)}
       - {id: rio_bogota, tipo: rio, nombre: Río Bogotá (riego y acueducto)}
       - {id: muna, tipo: embalse, nombre: Muña (bombeo), paratec: MUÑA, xm: MUNA}
-      - {id: paraiso, tipo: planta, nombre: Paraíso}
-      - {id: la_guaca, tipo: planta, nombre: La Guaca}
-      - {id: cadena_antigua, tipo: planta, nombre: Cadena antigua (Charquito a Darío Valencia)}
+      - {id: paraiso, tipo: planta, nombre: Paraíso, xm_recursos: [PGUG]}
+      - {id: la_guaca, tipo: planta, nombre: La Guaca, xm_en: paraiso}
+      - {id: cadena_antigua, tipo: planta, nombre: Cadena antigua (Charquito a Darío Valencia), xm_recursos: [CQT1, LMR1, 2UPJ, 2UPD, 2UPF, 2UPH, 2R22, 2QEK, DVS1]}
     aristas:
       - [sisga, rio_bogota]
       - [tomine, rio_bogota]
@@ -121,9 +124,9 @@ cadenas:
     diagrama: diagrama Emgesa 2018
     nodos:
       - {id: el_quimbo_emb, tipo: embalse, nombre: El Quimbo, paratec: EL QUIMBO, xm: EL QUIMBO}
-      - {id: el_quimbo, tipo: planta, nombre: El Quimbo}
+      - {id: el_quimbo, tipo: planta, nombre: El Quimbo, xm_recursos: [QUI1]}
       - {id: betania_emb, tipo: embalse, nombre: Betania, paratec: BETANIA, xm: BETANIA}
-      - {id: betania, tipo: planta, nombre: Betania}
+      - {id: betania, tipo: planta, nombre: Betania, xm_recursos: [CHBG]}
       - {id: magdalena_abajo, tipo: rio, nombre: Río Magdalena aguas abajo}
     aristas:
       - [el_quimbo_emb, el_quimbo]
@@ -141,11 +144,11 @@ cadenas:
     diagrama: Salvajina.pdf, SanFrancisco.pdf
     nodos:
       - {id: salvajina_emb, tipo: embalse, nombre: Salvajina, paratec: SALVAJINA, xm: SALVAJINA}
-      - {id: salvajina, tipo: planta, nombre: Salvajina}
+      - {id: salvajina, tipo: planta, nombre: Salvajina, xm_recursos: [SLVJ]}
       - {id: rio_cauca, tipo: rio, nombre: Río Cauca (~800 km)}
-      - {id: esmeralda_sf, tipo: planta, nombre: Esmeralda y San Francisco (Caldas), filo_de_agua: true}
+      - {id: esmeralda_sf, tipo: planta, nombre: Esmeralda y San Francisco (Caldas), filo_de_agua: true, xm_recursos: [ESMR, SNFR]}
       - {id: ituango_emb, tipo: embalse, nombre: Ituango, paratec: ITUANGO, xm: ITUANGO}
-      - {id: ituango, tipo: planta, nombre: Ituango}
+      - {id: ituango, tipo: planta, nombre: Ituango, xm_recursos: [PES1]}
     aristas:
       - [salvajina_emb, salvajina]
       - [salvajina, rio_cauca]
@@ -167,7 +170,7 @@ cadenas:
       - {id: rio_guavio, tipo: rio, nombre: Río Guavio}
       - {id: desv_chivor, tipo: desviacion, nombre: Desviación río Chivor}
       - {id: guavio_emb, tipo: embalse, nombre: Guavio, paratec: GUAVIO, xm: GUAVIO}
-      - {id: guavio, tipo: planta, nombre: Guavio}
+      - {id: guavio, tipo: planta, nombre: Guavio, xm_recursos: [GVIO]}
     aristas:
       - [desv_batatas, guavio_emb]
       - [rio_guavio, guavio_emb]
@@ -186,7 +189,7 @@ cadenas:
       - {id: rio_bata, tipo: rio, nombre: Río Batá}
       - {id: desv_tunjita, tipo: desviacion, nombre: Desviación Tunjita}
       - {id: esmeralda, tipo: embalse, nombre: Esmeralda, paratec: ESMERALDA, xm: ESMERALDA}
-      - {id: chivor, tipo: planta, nombre: Chivor}
+      - {id: chivor, tipo: planta, nombre: Chivor, xm_recursos: [CHVR]}
       - {id: rio_lengupa, tipo: rio, nombre: Río Lengupá}
     aristas:
       - [desv_negro, esmeralda]
@@ -205,7 +208,7 @@ cadenas:
     nodos:
       - {id: rio_sogamoso, tipo: rio, nombre: Río Sogamoso}
       - {id: topocoro, tipo: embalse, nombre: Topocoro, paratec: TOPOCORO, xm: TOPOCORO}
-      - {id: sogamoso, tipo: planta, nombre: Sogamoso}
+      - {id: sogamoso, tipo: planta, nombre: Sogamoso, xm_recursos: [SOG1]}
     aristas:
       - [rio_sogamoso, topocoro]
       - [topocoro, sogamoso]
@@ -221,7 +224,7 @@ cadenas:
       - {id: rio_la_miel, tipo: rio, nombre: Río La Miel}
       - {id: trasvase_manso, tipo: desviacion, nombre: Trasvase Manso}
       - {id: amani, tipo: embalse, nombre: Amaní, paratec: AMANÍ, xm: AMANI}
-      - {id: miel_i, tipo: planta, nombre: Miel I}
+      - {id: miel_i, tipo: planta, nombre: Miel I, xm_recursos: [HMLG]}
     aristas:
       - [trasvase_guarino, amani]
       - [rio_la_miel, amani]
@@ -237,7 +240,7 @@ cadenas:
     nodos:
       - {id: rio_calima, tipo: rio, nombre: Ríos Calima y Bravo}
       - {id: calima_emb, tipo: embalse, nombre: Calima, paratec: CALIMA, xm: CALIMA1}
-      - {id: calima, tipo: planta, nombre: Calima}
+      - {id: calima, tipo: planta, nombre: Calima, xm_recursos: [CLMG]}
     aristas:
       - [rio_calima, calima_emb]
       - [calima_emb, calima]
@@ -250,9 +253,9 @@ cadenas:
     diagrama: diagrama Celsia 2021
     nodos:
       - {id: alto_anchicaya_emb, tipo: embalse, nombre: Alto Anchicayá, paratec: ALTOANCHICAYA, xm: ALTOANCHICAYA}
-      - {id: alto_anchicaya, tipo: planta, nombre: Alto Anchicayá}
+      - {id: alto_anchicaya, tipo: planta, nombre: Alto Anchicayá, xm_recursos: [ALBG]}
       - {id: serie_digua, tipo: rio, nombre: Serie Digua}
-      - {id: bajo_anchicaya, tipo: planta, nombre: Bajo Anchicayá, filo_de_agua: true}
+      - {id: bajo_anchicaya, tipo: planta, nombre: Bajo Anchicayá, filo_de_agua: true, xm_en: alto_anchicaya}
     aristas:
       - [alto_anchicaya_emb, alto_anchicaya]
       - [alto_anchicaya, bajo_anchicaya]
@@ -267,7 +270,7 @@ cadenas:
     nodos:
       - {id: rio_sinu, tipo: rio, nombre: Río Sinú}
       - {id: urra_emb, tipo: embalse, nombre: Urrá, paratec: URRÁ, xm: URRA1}
-      - {id: urra_i, tipo: planta, nombre: Urrá I}
+      - {id: urra_i, tipo: planta, nombre: Urrá I, xm_recursos: [URA1]}
     aristas:
       - [rio_sinu, urra_emb]
       - [urra_emb, urra_i]
@@ -281,8 +284,8 @@ cadenas:
     nodos:
       - {id: rio_prado, tipo: rio, nombre: Río Prado}
       - {id: prado_emb, tipo: embalse, nombre: Prado, paratec: PRADO, xm: PRADO}
-      - {id: prado, tipo: planta, nombre: Prado}
-      - {id: prado_iv, tipo: planta, nombre: Prado IV (riego ASOPRADO)}
+      - {id: prado, tipo: planta, nombre: Prado, xm_recursos: [PRDO]}
+      - {id: prado_iv, tipo: planta, nombre: Prado IV (riego ASOPRADO), xm_recursos: [PRD4]}
     aristas:
       - [rio_prado, prado_emb]
       - [prado_emb, prado]

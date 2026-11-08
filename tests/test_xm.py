@@ -31,6 +31,10 @@ class APISimulada:
         fechas = pd.date_range(inicio, fin, freq="D")
         doy = fechas.dayofyear.to_numpy()
         pct = 0.6 + 0.25 * np.sin(2 * np.pi * doy / 365)
+        if entidad == "Recurso":
+            # Capacidad efectiva neta en kW: 100 MW por recurso, más uno ajeno que se descarta.
+            codigos = sorted(xm._codigos_recursos(RAIZ)) + ["AJENO"]
+            return pd.DataFrame([{"Id": "Recurso", "Code": c, "Value": 100_000.0, "Date": f} for c in codigos for f in fechas.date])
         if entidad == "Sistema":
             cap = 17_000e6
             valores = {"PorcVoluUtilDiar": pct, "VoluUtilDiarEner": pct * cap, "CapaUtilDiarEner": np.full(len(doy), cap)}
@@ -108,3 +112,20 @@ def test_serie_faltante_es_error(raiz):
     api.request_data = sin_guavio
     xm.actualizar(raiz, api=api, desde=dt.date(2024, 1, 1), hasta=dt.date(2024, 2, 1))
     assert run(raiz, copiar_sitio=False) == 1
+
+
+def test_capacidad_efectiva_reemplaza_supuestos(raiz):
+    xm.actualizar(raiz, api=APISimulada(), desde=dt.date(2026, 10, 1), hasta=dt.date(2026, 10, 3))
+    crudo = xm.leer_crudo(raiz, "CapEfecNeta", "Recurso")
+    assert "AJENO" not in set(crudo["Name"])
+    assert run(raiz, copiar_sitio=False) == 0
+    cap = pd.read_csv(raiz / "data/processed/capacidad_plantas.csv").set_index("planta_id")
+    assert cap.loc["guatape", "fuente"] == "XM"
+    assert cap.loc["guatape", "potencia_mw"] == pytest.approx(100)
+    # Cadena antigua suma 9 recursos; La Guaca va incluida en Paraíso (PAGUA).
+    assert cap.loc["cadena_antigua", "potencia_mw"] == pytest.approx(900)
+    assert cap.loc["la_guaca", "potencia_mw"] == 0
+    assert (cap["fuente"] != "supuesto").all()
+    emb = pd.read_csv(raiz / "data/processed/embalses.csv").set_index("nodo_id")
+    # Peñol: Guatapé + Playas + San Carlos.
+    assert emb.loc["penol", "potencia_aguas_abajo_mw"] == pytest.approx(300)

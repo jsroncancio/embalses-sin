@@ -6,6 +6,7 @@ title: Metodología y fuentes
 import {num} from "./components/formato.js";
 const fuentes = FileAttachment("data/fuentes.json").json();
 const validacion = FileAttachment("data/validacion.csv").csv({typed: true});
+const capacidad = FileAttachment("data/capacidad_plantas.csv").csv({typed: true});
 ```
 
 # Metodología y fuentes
@@ -19,6 +20,7 @@ Cada cifra del sitio es de uno de tres tipos: **dato oficial** de XM, **cálculo
 | PARATEC, XM: Detalle de embalse | Niveles, volúmenes, factor de conversión, energía útil, curvas guía, NEP y NPV | `data/raw/paratec/<fecha>/` |
 | Diagramas topológicos de los agentes declarados ante XM | Conexiones aguas arriba y abajo, desviaciones, usos de agua | `config/cadenas.yaml` (transcrito a mano) |
 | API pública de XM (servapibi, vía `pydataxm`) | Nivel diario por embalse y del SIN desde 2025: % del volumen útil, energía almacenada y capacidad útil | `data/raw/xm/` (se actualiza a diario) |
+| API pública de XM, métrica `CapEfecNeta` por recurso | Capacidad efectiva neta de cada planta (MW) | `data/raw/xm/CapEfecNeta_Recurso/` (se actualiza a diario) |
 | Sinergox, XM | Totales de referencia del SIN | `config/supuestos.yaml` |
 
 ```js
@@ -48,15 +50,28 @@ Cuando un embalse declara el mismo valor para NEP y NPV, la banda flexible de es
 
 Se asume factor de conversión constante con el nivel, la misma convención de PARATEC.
 
-**Horas a potencia (supuesto).** Energía útil × 1.000 ÷ suma de la potencia de las plantas que turbinan esa agua, sin contar aportes. Es un orden de magnitud: la cifra real depende del caudal máximo de la primera planta, que se incorporará cuando haya datos de turbinamiento.
+**Horas a potencia.** Energía útil × 1.000 ÷ suma de la capacidad efectiva neta de las plantas que turbinan esa agua, sin contar aportes. Es un orden de magnitud: supone todas las plantas a plena carga, y en la práctica el agua de un embalse sale al ritmo de la primera planta aguas abajo.
 
 **Nivel diario.** Es el volumen útil como porcentaje de la capacidad útil, tal como lo publica XM (métrica `PorcVoluUtilDiar`); XM no publica la cota en m.s.n.m. El nivel de una cadena es su energía almacenada sobre su capacidad útil, ambas sumadas en GWh. La referencia de cada gráfica es la banda NEP–NPV del mes; para una cadena o el SIN se pondera por la energía útil de PARATEC.
 
 ## Supuestos vigentes
 
-- Potencias por planta: aproximadas. Se reemplazan por la capacidad efectiva neta de XM en la fase 2.
 - NEP = NPV = 0 todo el año se interpreta como "no declarado" (caso Ituango).
+- "Cadena antigua" del río Bogotá = Charquito, El Limonar, Tequendama 1 a 4, Laguneta, Salto II y Darío Valencia Samper: agrupación nuestra de los recursos de XM.
 - Régimen por días a potencia: 60 o más multianual, 10 a 60 estacional, menos de 10 semanal o diario.
+
+## Capacidad efectiva neta por planta
+
+Potencia de cada planta según XM (métrica `CapEfecNeta`, último dato publicado). Cada planta se asocia a sus códigos de recurso XM en `config/cadenas.yaml`. Cuando XM publica varias plantas como un solo recurso (GUATRON, PAGUA, ALBAN), la capacidad se asigna a la primera. Si una planta no tiene dato de XM, se usa una potencia aproximada de `config/supuestos.yaml` y aparece aquí como "supuesto".
+
+```js
+Inputs.table(capacidad, {
+  columns: ["planta", "recursos_xm", "potencia_mw", "fuente", "incluida_en", "fecha_xm"],
+  header: {planta: "Planta", recursos_xm: "Recursos XM", potencia_mw: "Capacidad (MW)", fuente: "Fuente", incluida_en: "Incluida en", fecha_xm: "Fecha XM"},
+  format: {potencia_mw: (d) => num(d, 1), fecha_xm: (d) => (d ? d.toISOString().slice(0, 10) : "")},
+  rows: 30
+})
+```
 
 ## Advertencias de la validación
 

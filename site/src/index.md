@@ -160,18 +160,18 @@ display(Plot.plot({
 
 ```js
 Inputs.table(cadenas, {
-  columns: ["cadena", "tipo", "n_embalses", "energia_util_gwh", "pct_energia_sin", "vol_util_mm3", "banda_min_gwh", "mes_banda_min", "potencia_regulada_mw_supuesto", "horas_a_potencia_supuesto"],
+  columns: ["cadena", "tipo", "n_embalses", "energia_util_gwh", "pct_energia_sin", "vol_util_mm3", "banda_min_gwh", "mes_banda_min", "potencia_regulada_mw", "horas_a_potencia"],
   header: {
     cadena: "Cadena", tipo: "Tipo", n_embalses: "Embalses", energia_util_gwh: "Energía útil (GWh)", pct_energia_sin: "% del SIN",
-    vol_util_mm3: "Vol. útil (Mm³)", banda_min_gwh: "Banda mín. (GWh)", mes_banda_min: "Mes", potencia_regulada_mw_supuesto: "Potencia* (MW)", horas_a_potencia_supuesto: "Horas a potencia*"
+    vol_util_mm3: "Vol. útil (Mm³)", banda_min_gwh: "Banda mín. (GWh)", mes_banda_min: "Mes", potencia_regulada_mw: "Potencia (MW)", horas_a_potencia: "Horas a potencia"
   },
   format: {
     cadena: (d, i) => htl.html`<a href="./cadenas/${cadenas[i].cadena_id}">${d}</a>`,
     energia_util_gwh: (d) => num(d), pct_energia_sin: (d) => num(d, 1), vol_util_mm3: (d) => num(d), banda_min_gwh: (d) => num(d),
-    potencia_regulada_mw_supuesto: (d) => num(d), horas_a_potencia_supuesto: (d) => num(d)
+    potencia_regulada_mw: (d) => num(d), horas_a_potencia: (d) => num(d)
   },
   sort: "energia_util_gwh", reverse: true, rows: 14
 })
 ```
 
-<p class="muted">* Supuesto: potencias aproximadas, pendientes de reemplazar por la capacidad efectiva neta de XM (fase 2). Horas a potencia = energía útil ÷ potencia de las plantas que turbinan esa agua, sin aportes.</p>
+<p class="muted">Potencia: capacidad efectiva neta de XM de las plantas que turbinan el agua de la cadena, al ${fuentes.capacidad.fecha}. Horas a potencia = energía útil ÷ potencia de las plantas que turbinan esa agua, sin aportes.</p>

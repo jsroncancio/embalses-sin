@@ -105,7 +105,11 @@ display(Plot.plot({
 }));
 ```
 
-${resumen.nep_incompleto ? html`<p class="warning">Algún embalse de esta cadena no tiene NEP ni NPV declarados en PARATEC; su energía no aparece en el gráfico.</p>` : ""}
+```js
+const sinNep = embalses.filter((e) => !nep.some((n) => n.nodo_id === e.nodo_id && n.nep != null)).map((e) => e.embalse);
+```
+
+${sinNep.length ? html`<p class="warning">${sinNep.join(", ")} no ${sinNep.length > 1 ? "tienen" : "tiene"} NEP ni NPV declarados en PARATEC; su energía (${num(d3.sum(embalses.filter((e) => sinNep.includes(e.embalse)), (e) => e.energia_util_gwh))} GWh) no aparece en el gráfico.</p>` : ""}
 
 ## Embalses
 

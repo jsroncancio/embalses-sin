@@ -33,9 +33,9 @@ print(f"\nRecursos hidráulicos: {len(hid)}")
 print(hid.to_string())
 
 cap = api.request_data("CapEfecNeta", "Recurso", hace, hoy)
-print("\nColumnas CapEfecNeta:", list(cap.columns))
-cap = cap.sort_values("Date").groupby(cap.columns[0]).tail(1)
-code = [c for c in hid.columns if c.lower().endswith("code")][0]
-m = hid.merge(cap, left_on=code, right_on=cap.columns[0], how="left")
-print("\nHidráulicas con capacidad efectiva neta:")
-print(m.to_string())
+cap = cap.sort_values("Date").groupby("Code").tail(1)
+m = hid.merge(cap[["Code", "Value", "Date"]], left_on="Values_Code", right_on="Code", how="left")
+m["MW"] = m["Value"] / 1000
+cols = ["Values_Code", "Values_Name", "Values_Disp", "Values_RecType", "Values_CompanyCode", "MW", "Date_y"]
+print("\nHidráulicas con capacidad efectiva neta (MW):")
+print(m[cols].sort_values("Values_Name").to_csv(index=False))

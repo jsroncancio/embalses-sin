@@ -6,7 +6,7 @@ toc: false
 ```js
 import {num, MESES, COMPONENTES} from "./components/formato.js";
 import {feature} from "npm:topojson-client";
-import {conReferencia, graficaNivel, graficaEmbalsesHoy, embalsesHoy, estado, ESTADOS, fechaCO} from "./components/nivel.js";
+import {conReferencia, graficaNivel, graficaEmbalsesHoy, embalsesHoy, estado, ESTADOS, fechaCO, fechaLarga} from "./components/nivel.js";
 
 const cadenas = FileAttachment("data/cadenas.csv").csv({typed: true});
 const embalses = FileAttachment("data/embalses.csv").csv({typed: true});
@@ -19,6 +19,17 @@ const mundo = fetch(import.meta.resolve("npm:world-atlas/countries-50m.json")).t
 ```
 
 # Embalses del SIN como batería hidroeléctrica
+
+<div class="card fecha-datos">
+  <span class="muted">Datos de XM disponibles al</span><br>
+  <span class="fecha-grande">${fechaLarga(sistema.at(-1).fecha)}</span><br>
+  <span class="muted">Se actualizan cada día a las 8:30 a. m. (hora de Colombia) con el último dato que publica XM. Capacidad y curvas NEP–NPV: PARATEC, reporte del ${fuentes.paratec.fecha_reporte}.</span>
+</div>
+
+<style>
+.fecha-datos {border-left: 4px solid var(--theme-blue);}
+.fecha-grande {font-size: 2.2rem; font-weight: 700; line-height: 1.3;}
+</style>
 
 ```js
 const total = d3.sum(cadenas, (d) => d.energia_util_gwh);
@@ -59,7 +70,7 @@ display(graficaNivel(datosSIN, {width, titulo: "SIN"}));
 display(graficaEmbalsesHoy(filasHoy, {width}));
 ```
 
-<p class="muted">Sisga, Tominé y Neusa se publican juntos en XM como agregado Bogotá. Ituango no tiene NEP ni NPV declarados.</p>
+<p class="muted">Punto: nivel de hoy. Franja azul: banda NEP–NPV del mes. Raya roja (arriba): NEP. Raya naranja (abajo): NPV. Cuando un embalse declara el mismo valor para NEP y NPV (como Playas en varios meses), la banda tiene ancho cero y solo se ven las dos rayas juntas; si son casi iguales (como Esmeralda), la franja es muy delgada. Ituango no tiene NEP ni NPV declarados, por eso no tiene banda. Sisga, Tominé y Neusa se publican juntos en XM como agregado Bogotá.</p>
 </div>
 
 ## Capacidad declarada

@@ -3,6 +3,9 @@ import * as d3 from "npm:d3";
 import {num} from "./formato.js";
 
 export const fechaCO = d3.utcFormat("%d/%m/%Y");
+const MESES_LARGOS = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+/** Fecha larga en español: "6 de noviembre de 2026". */
+export const fechaLarga = (d) => `${d.getUTCDate()} de ${MESES_LARGOS[d.getUTCMonth()]} de ${d.getUTCFullYear()}`;
 const mesDe = (d) => d.getUTCMonth() + 1;
 
 export const ESTADOS = {
@@ -57,7 +60,7 @@ export function graficaEmbalsesHoy(filas, {width} = {}) {
   const conRef = filas.filter((d) => d.nep != null);
   return Plot.plot({
     width,
-    height: 26 * filas.length + 60,
+    height: 30 * filas.length + 60,
     marginLeft: 200,
     marginRight: 56,
     x: {label: "% del volumen útil", domain: [0, Math.max(100, d3.max(filas, (d) => d.valor))], grid: true},
@@ -65,6 +68,9 @@ export function graficaEmbalsesHoy(filas, {width} = {}) {
     color: {domain: Object.values(ESTADOS).map((e) => e.nombre), range: Object.values(ESTADOS).map((e) => e.color), legend: true},
     marks: [
       Plot.barX(conRef, {y: "embalse", x1: "nep", x2: "npv", fill: ESTADOS.banda.color, fillOpacity: 0.15, insetTop: 5, insetBottom: 5}),
+      // NEP (rojo, mitad superior) y NPV (naranja, mitad inferior): si coinciden, se ven las dos.
+      Plot.tickX(conRef, {y: "embalse", x: "nep", stroke: ESTADOS.bajo.color, strokeWidth: 2.5, insetTop: 3, insetBottom: 13}),
+      Plot.tickX(conRef, {y: "embalse", x: "npv", stroke: ESTADOS.alto.color, strokeWidth: 2.5, insetTop: 13, insetBottom: 3}),
       Plot.dot(filas, {y: "embalse", x: "valor", r: 5, fill: (d) => ESTADOS[estado(d.valor, d.nep, d.npv)]?.nombre ?? "gray"}),
       Plot.text(filas, {y: "embalse", x: "valor", text: (d) => `${num(d.valor, 0)} %`, dx: 10, textAnchor: "start", fontSize: 11}),
       Plot.tip(filas, Plot.pointerY({

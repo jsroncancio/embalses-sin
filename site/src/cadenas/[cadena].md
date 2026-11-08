@@ -1,7 +1,7 @@
 ```js
 import {num, MESES, COMPONENTES} from "../components/formato.js";
 import {diagramaCadena} from "../components/topologia.js";
-import {conReferencia, graficaNivel, graficaEmbalsesHoy, embalsesHoy, fechaCO} from "../components/nivel.js";
+import {conReferencia, graficaNivel, graficaEmbalsesHoy, embalsesHoy, fechaCO, fechaLarga} from "../components/nivel.js";
 
 const id = observable.params.cadena;
 const topologia = FileAttachment("../data/topologia.json").json();
@@ -28,6 +28,16 @@ const avisos = validacion.filter((d) => embalses.some((e) => e.embalse === d.obj
 # ${resumen.cadena}
 
 <p class="muted">${resumen.tipo === "serie" ? "Cadena en serie" : "Embalse aislado"} · ${resumen.region} · ríos ${resumen.rios}</p>
+
+<div class="card fecha-datos">
+  <span class="muted">Datos de XM disponibles al</span><br>
+  <span class="fecha-grande">${fechaLarga(hoyCadena.fecha)}</span>
+</div>
+
+<style>
+.fecha-datos {border-left: 4px solid var(--theme-blue);}
+.fecha-grande {font-size: 2.2rem; font-weight: 700; line-height: 1.3;}
+</style>
 
 <div class="grid grid-cols-4">
   <div class="card"><h2>Energía útil</h2><span class="big">${num(resumen.energia_util_gwh)} GWh</span><br><span class="muted">${num(resumen.pct_energia_sin, 1)} % del SIN</span></div>

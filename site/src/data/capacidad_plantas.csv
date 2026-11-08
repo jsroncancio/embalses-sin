@@ -1,0 +1,29 @@
+cadena_id,planta_id,planta,recursos_xm,incluida_en,potencia_mw,fecha_xm,fuente
+nare_guatape,guatape,Guatapé,GTPE,,560.0,2026-11-06,XM
+nare_guatape,jaguas,Jaguas,JAGS,,170.0,2026-11-06,XM
+nare_guatape,playas,Playas,PLYS,,207.0,2026-11-06,XM
+nare_guatape,san_carlos,San Carlos,SNCR,,1240.0,2026-11-06,XM
+porce_guadalupe,troneras,Troneras,GTRG,,512.0,2026-11-06,XM
+porce_guadalupe,guadalupe_3_4,Guadalupe III y IV,,troneras,0.0,,incluida en otra planta
+porce_guadalupe,tasajera,La Tasajera,LTSJ,,306.0,2026-11-06,XM
+porce_guadalupe,carlos_lleras,Carlos Lleras,CLL1,,78.0,2026-11-06,XM
+porce_guadalupe,porce2,Porce II,PRC2,,405.0,2026-11-06,XM
+porce_guadalupe,porce3,Porce III,PRC3,,700.0,2026-11-06,XM
+bogota_pagua,paraiso,Paraíso,PGUG,,600.0,2026-11-06,XM
+bogota_pagua,la_guaca,La Guaca,,paraiso,0.0,,incluida en otra planta
+bogota_pagua,cadena_antigua,Cadena antigua (Charquito a Darío Valencia),"CQT1, LMR1, 2UPJ, 2UPD, 2UPF, 2UPH, 2R22, 2QEK, DVS1",,297.2,2026-11-06,XM
+alto_magdalena,el_quimbo,El Quimbo,QUI1,,400.0,2026-11-06,XM
+alto_magdalena,betania,Betania,CHBG,,540.0,2026-11-06,XM
+cauca,salvajina,Salvajina,SLVJ,,315.0,2026-11-06,XM
+cauca,esmeralda_sf,Esmeralda y San Francisco (Caldas),"ESMR, SNFR",,165.0,2026-11-06,XM
+cauca,ituango,Ituango,PES1,,1200.0,2026-11-06,XM
+guavio,guavio,Guavio,GVIO,,1250.0,2026-11-06,XM
+esmeralda_chivor,chivor,Chivor,CHVR,,1000.0,2026-11-06,XM
+sogamoso,sogamoso,Sogamoso,SOG1,,819.0,2026-11-06,XM
+la_miel,miel_i,Miel I,HMLG,,396.0,2026-11-06,XM
+calima,calima,Calima,CLMG,,132.0,2026-11-06,XM
+anchicaya,alto_anchicaya,Alto Anchicayá,ALBG,,427.0,2026-11-06,XM
+anchicaya,bajo_anchicaya,Bajo Anchicayá,,alto_anchicaya,0.0,,incluida en otra planta
+urra,urra_i,Urrá I,URA1,,338.0,2026-11-06,XM
+prado,prado,Prado,PRDO,,51.0,2026-11-06,XM
+prado,prado_iv,Prado IV (riego ASOPRADO),PRD4,,6.5,2026-11-06,XM

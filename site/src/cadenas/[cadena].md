@@ -105,7 +105,7 @@ display(Plot.plot({
 }));
 ```
 
-${resumen.nep_incompleto ? html`<p class="warning">Algún embalse de esta cadena no tiene NEP ni NPV declarados en PARATEC; su energía no aparece en el gráfico.</p>` : ""}
+${String(resumen.nep_incompleto).toLowerCase() === "true" ? html`<p class="warning">Algún embalse de esta cadena no tiene NEP ni NPV declarados en PARATEC; su energía no aparece en el gráfico.</p>` : ""}
 
 ## Embalses
 

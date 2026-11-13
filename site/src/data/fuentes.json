@@ -1,5 +1,5 @@
 {
- "generado": "2026-11-12T21:01:21+00:00",
+ "generado": "2026-11-13T20:37:50+00:00",
  "paratec": {
   "archivo": "data/raw/paratec/2026-11-03/PARATEC_Detalle_Embalse_03-11-2026.xlsx",
   "fecha_reporte": "2026-11-03",
@@ -8,7 +8,7 @@
  },
  "xm": {
   "origen": "API pública de XM (servapibi.xm.com.co) vía pydataxm",
-  "ultimo_dato": "2026-11-11",
+  "ultimo_dato": "2026-11-12",
   "primer_dato": "2025-01-01",
   "metricas": [
    "PorcVoluUtilDiar/Embalse",
@@ -21,7 +21,7 @@
  },
  "capacidad": {
   "origen": "XM, capacidad efectiva neta por recurso (CapEfecNeta)",
-  "fecha": "2026-11-10",
+  "fecha": "2026-11-11",
   "plantas_con_supuesto": []
  },
  "topologia": "config/cadenas.yaml",
